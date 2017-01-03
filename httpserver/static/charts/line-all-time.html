@@ -1,0 +1,95 @@
+<html>
+<head></head>
+<body>
+
+<div id="graph" style="text-align:center"></div>
+<div id="data-table" style="text-align:center"></div>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+<link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+<link href='../css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+
+<link href='../css/metricsgraphics.css ' rel='stylesheet' type='text/css'>
+<link href='../css/metricsgraphics-demo.css' rel='stylesheet' type='text/css' id='light'>
+<link href='../css/highlightjs-default.css' rel='stylesheet' type='text/css' id='light-code'>
+
+<script src='../js/lib/highlight.pack.js'></script>
+<script src='../js/jquery.min.js'></script>
+<script src="../js/d3.v4.min.js"></script>
+
+<script src='../../src/js/MG.js'></script>
+<script src='../../src/js/misc/utility.js'></script>
+<script src='../../src/js/common/data_graphic.js'></script>
+<script src='../../src/js/common/hooks.js'></script>
+<script src='../../src/js/common/register.js'></script>
+<script src='../../src/js/common/bootstrap_tooltip_popover.js'></script>
+<script src='../../src/js/common/scales.js'></script>
+<script src='../../src/js/common/chart_title.js'></script>
+<script src='../../src/js/common/y_axis.js'></script>
+<script src='../../src/js/common/x_axis.js'></script>
+<script src='../../src/js/common/scales.js'></script>
+<script src='../../src/js/common/init.js'></script>
+<script src='../../src/js/common/markers.js'></script>
+<script src='../../src/js/common/rollover.js'></script>
+<script src='../../src/js/common/window_listeners.js'></script>
+<script src='../../src/js/layout/bootstrap_dropdown.js'></script>
+<script src='../../src/js/layout/button.js'></script>
+<script src='../../src/js/charts/line.js'></script>
+<script src='../../src/js/charts/histogram.js'></script>
+<script src='../../src/js/charts/point.js'></script>
+<script src='../../src/js/charts/bar.js'></script>
+<script src='../../src/js/charts/table.js'></script>
+<script src='../../src/js/charts/missing.js'></script>
+<script src='../../src/js/misc/process.js'></script>
+<script src='../../src/js/misc/smoothers.js'></script>
+<script src='../../src/js/misc/formatters.js'></script>
+<script src='../../src/js/misc/transitions.js'></script>
+<script src='../../src/js/misc/error.js'></script>
+
+<script src='../js/addons/mg_line_brushing.js'></script>
+<link rel='stylesheet' href='../css/addons/mg_line_brushing.css' />
+
+<script>
+ d3.json('../../data/all_enqued_error_band.json', function(data) {
+    // for (var i = 0; i < data.length; i++) {
+    //     data[i] = MG.convert.date(data[i], 'date');
+    // }
+    data = MG.convert.date(data, 'date');
+    var markers = [{
+      'date': new Date('2016-11-27T00:00:00.000Z'),
+      'label': 'babl-server 0.7.0'
+    }, {
+      'date': new Date('2016-12-09T00:00:00.000Z'),
+      'label': 'babl-server 0.8.0'
+    }];
+
+    MG.data_graphic({
+      title: "Total/Error Req",
+      description: "Drag the crosshair over the chart to zoom",
+      data: data,
+      top: 70,
+      width: 1024,
+      height: 360,
+      right: 0,
+      bottom: 50,
+      missing_is_zero: true,
+      // missing_is_hidden: true,
+      markers:markers,
+      y_extended_ticks: true,
+      show_confidence_band: ['l','u'],
+      target: '#graph',
+      mouseover: function(d, i) {
+        var df = d3.timeFormat('%b %d, %Y');
+        var date = df(d.date);
+        var error =d.error+' ['+(d.error/d.value*100).toFixed(2) + '%]';
+
+        d3.select('#graph svg .mg-active-datapoint')
+        .text(date +' Total:'+d.value +' Error:'+error);
+      }
+    });
+  });
+</script>
+</body>
+</html>

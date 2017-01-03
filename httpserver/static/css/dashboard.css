@@ -1,0 +1,49 @@
+
+ul.counters {
+  clear: both;
+  font-size: 2.2rem;
+  padding: 10px 0 0 0;
+}
+
+ul.counters li {
+  display: inline;
+  list-style: none;
+  padding-right: 15px;
+}
+
+.logos {
+  margin: 0px 0px;
+}
+
+.counter {
+  color:black;
+  padding:10px;
+  font-size: 1.5rem
+}
+
+
+.tiny {
+  font-size: 1.3rem;
+}
+iframe {
+  border: 0px;
+}
+
+.pie-counter{
+  width: 260;
+  height: 220;
+}
+
+.history{
+  height: 400px;
+  width:100%;
+}
+
+.history-evolution{
+  width: 520px;
+}
+
+.last-hour-info{
+  font-size:0.9rem;
+  text-align: center
+}

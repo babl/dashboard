@@ -1,0 +1,130 @@
+<html lang='en'>
+<head>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+  <meta property='og:title' content='MetricsGraphics.js' />
+  <meta property='og:description' content='MetricsGraphics.js is a library optimized
+  for visualizing and laying out time-series data. It provides a simple way to produce
+  common types of graphics in a principled, consistent and responsive way.' />
+  <meta property='og:image' content='images/babl-logo.png' />
+  <meta property='og:type' content='website' />
+  <meta property='og:url' content='http://metricsgraphicsjs.org/' />
+  <meta property='og:site_name' content='MetricsGraphics.js' />
+
+  <link rel='icon' type='image/png' href='images/babl-logo.png' />
+  <title>Babl Dashboard</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+  
+  <link href='css/metricsgraphics.css ' rel='stylesheet' type='text/css'>
+  <link href='css/metricsgraphics-demo.css' rel='stylesheet' type='text/css' id='light'>
+  <link href='' rel='stylesheet' type='text/css' id='dark'>
+  <link href='' rel='stylesheet' type='text/css' id='accessible'>
+  <link href='css/highlightjs-default.css' rel='stylesheet' type='text/css' id='light-code'>
+  <link href='' rel='stylesheet' type='text/css' id='dark-code'>
+  <link href='css/dashboard.css' rel='stylesheet' type='text/css'>
+
+  <script src='js/lib/highlight.pack.js'></script>
+  <script src='js/jquery.min.js'></script>
+  <script src="js/d3.v4.min.js"></script>
+
+
+  <!-- dev start -->
+  <script src='../src/js/MG.js'></script>
+  <script src='../src/js/misc/utility.js'></script>
+  <script src='../src/js/common/data_graphic.js'></script>
+  <script src='../src/js/common/hooks.js'></script>
+  <script src='../src/js/common/register.js'></script>
+  <script src='../src/js/common/bootstrap_tooltip_popover.js'></script>
+  <script src='../src/js/common/scales.js'></script>
+  <script src='../src/js/common/chart_title.js'></script>
+  <script src='../src/js/common/y_axis.js'></script>
+  <script src='../src/js/common/x_axis.js'></script>
+  <script src='../src/js/common/scales.js'></script>
+  <script src='../src/js/common/init.js'></script>
+  <script src='../src/js/common/markers.js'></script>
+  <script src='../src/js/common/rollover.js'></script>
+  <script src='../src/js/common/window_listeners.js'></script>
+  <script src='../src/js/layout/bootstrap_dropdown.js'></script>
+  <script src='../src/js/layout/button.js'></script>
+  <script src='../src/js/charts/line.js'></script>
+  <script src='../src/js/charts/histogram.js'></script>
+  <script src='../src/js/charts/point.js'></script>
+  <script src='../src/js/charts/bar.js'></script>
+  <script src='../src/js/charts/table.js'></script>
+  <script src='../src/js/charts/missing.js'></script>
+  <script src='../src/js/misc/process.js'></script>
+  <script src='../src/js/misc/smoothers.js'></script>
+  <script src='../src/js/misc/formatters.js'></script>
+  <script src='../src/js/misc/transitions.js'></script>
+  <script src='../src/js/misc/error.js'></script>
+  <!-- dev end -->
+
+</head>
+
+<body>
+  <div class='container'>
+
+    <div class='head'>
+      <ul class='text-right'>
+        <li><a href='#' id='ws' class=''></a></li>
+      </ul>
+    </div>
+
+    <div class="row text-center">
+      <img src='images/loyalist.png' class=""/>
+    </div>
+
+    <div class="row text-center" id="counters">
+      <ul class='counters'>
+        <li>
+          <span class="counter">
+            Data gathered from <b>{{.Module}}</b> modules</span> 
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="row meter text-center">
+    <div class="progress center-block" style="width:640px;">
+        <div class="progress-bar progress-bar-striped active progress-bar-info" style="width: 35%">
+          <span class="sr-only">980 req/h</span>
+        </div>
+        <div class="progress-bar progress-bar-striped active progress-bar-danger" style="width: 10%">
+          <span class="sr-only">20 req/h</span>
+        </div>
+    </div>
+    <span class="last-hour-info">Last hour data: <b>1000</b>req/h with a <b>3.84%</b> error rate. Max: <b>2000</b>req/h at Jan 1, 2016 at 16:17</span>
+    </div>  
+  <div class="row text-center">
+    <ul class='counters'>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-all-time.html"></iframe>
+    </li>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-last-week.html"></iframe>
+    </li>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-today.html"></iframe>
+    </li>
+  </div>
+
+  <div class='row trunk'>
+    <iframe class='history' src="charts/line-all-time.html"></iframe>
+  </div>
+  <div class='row text-center'>
+    <iframe class='history-evolution' src="charts/week-table.html"></iframe>
+  </div>
+  
+  <div class='footer'>
+      <a href='https://babl.sh'>Babl.sh</a>
+      <br /><a href='https://github.com/babl'>
+      <i class='fa fa-github fa-3x' style='line-height:42px'></i>
+    </a>
+  </div>
+</div> <!-- end container -->
+<script src='js/main.js'></script>
+</body>
+</html>

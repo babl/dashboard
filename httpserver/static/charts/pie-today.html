@@ -1,0 +1,127 @@
+<html>
+<head></head>
+<body>
+
+<div id="pieChart"></div>
+<script src="../js/d3.min.js"></script>
+<script src="../js/d3pie.min.js"></script>
+<script src="../js/underscore-min.js"></script>
+<script>
+
+// var today = new Date();
+// var dd = today.getDate();
+// var mm = today.getMonth()+1; //January is 0!
+
+// var yyyy = today.getFullYear();
+// if(dd<10){
+//     dd='0'+dd;
+// } 
+// if(mm<10){
+//     mm='0'+mm;
+// } 
+// var today = yyyy+'/'+mm+'/'+dd;
+// console.log(today)
+
+d3.json('../../data/all_enqued_error_band.json', function(data) {
+  //this week
+  var fValue = function(total,day){ return day.value  + total; }
+  var fError = function(total,day){ return day.error  + total; }
+
+  var today = _.last(data);
+  var suc = today.value - today.error
+
+  var pie = new d3pie("pieChart", {
+    "header": {
+      "title": {
+        "text": "Today "+today.date,
+        "fontSize": 11,
+        "font": "courier"
+      },
+      "subtitle": {
+        "text": today.value.toLocaleString(),
+        "color": "#999999",
+        "fontSize": 15,
+        "font": "courier"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "color": "#999999",
+      "fontSize": 10,
+      "font": "open sans",
+      "location": "bottom-left"
+    },
+    "size": {
+      "canvasHeight": 200,
+      "canvasWidth": 260,
+      "pieInnerRadius": "63%",
+      "pieOuterRadius": "83%"
+    },
+    "data": {
+      "sortOrder": "value-asc",
+      "content": [
+        {
+          "label": "Error",
+          "value": today.error,
+          "color": "#c12823"
+        },
+        {
+          "label": "Success",
+          "value": suc,
+          "color": "#64a61f"
+        }
+      ]
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage1",
+        "pieDistance": 20
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 11
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+    "tooltips": {
+      "enabled": true,
+      "type": "placeholder",
+      "string": "{label}: {value}, {percentage}%"
+    },
+    "effects": {
+      "pullOutSegmentOnClick": {
+        "effect": "none",
+        "speed": 400,
+        "size": 8
+      }
+    },
+    "misc": {
+      "colors": {
+        "segmentStroke": ""
+      }
+    },
+    "callbacks": {}
+  });
+});
+</script>
+
+</body>
+</html>
