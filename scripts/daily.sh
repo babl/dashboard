@@ -28,14 +28,13 @@ to='%27'${selected_day}'T23%3A59%3A59.999999999Z%27';
 # Babl
 #-------------------------------------------------------
 # BABL REQUEST TOTAL (code='req-enqueued')
-total_enqueued=$(curl --silent -u babl:qWzBwrWYcvUxiRtLvNuH7uEgLHiqMrVwRthUYndHWBLkc4hFzH https://influxdb.admin.babl.sh:18086/query\?q\=SELECT+count\(duration_ms\)+FROM+logs_qa..kafka_consumer_logs_qa+WHERE+%22cluster%22+%3D\~+%2F%5E\(${cluster}\)%24%2F++AND+%22module%22+%3D\~+%2F%5E\(${modules}\)%24%2F+AND+code%3D%27req-enqueued%27+AND+time+%3E%3D+${from}+AND+time+%3C%3D+${to}\&db\=logs_qa | jq '.results[] | .series[] | .values[] | .[1:2] | .[]');
+total_enqueued=$(curl --silent -u babl:qWzBwrWYcvUxiRtLvNuH7uEgLHiqMrVwRthUYndHWBLkc4hFzH https://influxdb.admin.babl.sh:18086/query\?q\=SELECT+count\(duration_ms\)+FROM+logs_qa..kafka_consumer_logs_qa+WHERE+%22cluster%22+%3D\~+%2F%5E\(${cluster}\)%24%2F++AND+%22module%22+%3D\~+%2F%5E\(${modules}\)%24%2F+AND+code%3D%27req-enqueued%27+AND+time+%3E%3D+${from}+AND+time+%3C%3D+${to}\&db\=logs_qa);
+[ "$total_enqueued" == '{"results":[{}]}' ] && total_enqueued=0 || total_enqueued=$(echo $total_enqueued | jq -c '.results[]? | .series[]? | .values[]? | .[1:2] | .[]');
 
 # BABL REQUESTS SUCCESS (code='completed' AND status='SUCCESS')
-total_success=$(curl --silent -u babl:qWzBwrWYcvUxiRtLvNuH7uEgLHiqMrVwRthUYndHWBLkc4hFzH https://influxdb.admin.babl.sh:18086/query\?q\=SELECT+count\(duration_ms\)+FROM+logs_qa..kafka_consumer_logs_qa+WHERE+%22cluster%22+%3D\~+%2F%5E\(${cluster}\)%24%2F++AND+%22module%22+%3D\~+%2F%5E\(${modules}\)%24%2F+AND+code%3D%27completed%27+AND+status%3D%27SUCCESS%27+AND+time+%3E%3D+${from}+AND+time+%3C%3D+${to}\&db\=logs_qa | jq '.results[] | .series[] | .values[] | .[1:2] | .[]');
+total_success=$(curl --silent -u babl:qWzBwrWYcvUxiRtLvNuH7uEgLHiqMrVwRthUYndHWBLkc4hFzH https://influxdb.admin.babl.sh:18086/query\?q\=SELECT+count\(duration_ms\)+FROM+logs_qa..kafka_consumer_logs_qa+WHERE+%22cluster%22+%3D\~+%2F%5E\(${cluster}\)%24%2F++AND+%22module%22+%3D\~+%2F%5E\(${modules}\)%24%2F+AND+code%3D%27completed%27+AND+status%3D%27SUCCESS%27+AND+time+%3E%3D+${from}+AND+time+%3C%3D+${to}\&db\=logs_qa);
+[ "$total_success" == '{"results":[{}]}' ] && total_success=0 || total_success=$(echo $total_success | jq -c '.results[]? | .series[]? | .values[]? | .[1:2] | .[]');
 
 total_error=$(expr $total_enqueued - $total_success);
-percent_success=$(echo "scale=5;"$total_success"/"$total_enqueued"*100.00" | bc -l);
-percent_error=$(echo 'scale=2;' "100.00-"$percent_success | bc -l);
-payload=$payload'{"date": "'$selected_day'","value": '$total_enqueued',"error": '$total_error',"l":'$total_success' ,"u":'$total_enqueued'}\n'
+payload=$payload'{"date": "'$selected_day'","value": '$total_enqueued',"error": '$total_error',"l":'$total_success' ,"u":'$total_enqueued'}'
 echo $payload
-

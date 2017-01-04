@@ -1,9 +1,11 @@
 package httpserver
 
 import (
+	// "fmt"
 	"html/template"
 	"net/http"
 	"os"
+	"os/exec"
 	_ "strconv"
 	"time"
 
@@ -26,7 +28,15 @@ import (
 // }
 
 type Counter struct {
-	Module int
+	Module            int
+	LastHourDate      string
+	LastHourReq       int
+	LastHourError     int
+	LastHourErrorRate float32
+	MaxReq            int
+	MaxReqDate        string
+	SuccessPercent    float32
+	ErrorPercent      float32
 }
 
 func StartHttpServer(listen string, wsHub *Hub) {
@@ -49,10 +59,13 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		serveWs(wsHub, w, r)
 	})
 
-	r.HandleFunc("/demo", func(w http.ResponseWriter, r *http.Request) {
-		wsHub.Broadcast <- []byte("Hello World!!!")
+	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
+
+		out := RunScript("./scripts/last_hour.sh")
+		// fmt.Println(out)
+		// wsHub.Broadcast <- []byte(out)
 		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte("demo!"))
+		w.Write([]byte(out))
 	})
 
 	r.HandleFunc("/loyalist", func(w http.ResponseWriter, r *http.Request) {
@@ -60,7 +73,17 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		if err != nil {
 			panic(err)
 		}
-		counters := &Counter{Module: 7}
+
+		counters := &Counter{
+			Module:            7,
+			LastHourDate:      "2017-01-03 16:35",
+			LastHourReq:       761,
+			LastHourErrorRate: 5.64,
+			MaxReq:            1000,
+			MaxReqDate:        "2017-01-03 15:35",
+			SuccessPercent:    76.1,
+			ErrorPercent:      5.64,
+		}
 		t.Execute(w, *counters) // merge.
 
 	})
@@ -76,4 +99,12 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	}
 
 	log.Fatal(srv.ListenAndServe())
+}
+
+func RunScript(cmd string, args ...string) []byte {
+	output, err := exec.Command(cmd, args...).Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return output
 }

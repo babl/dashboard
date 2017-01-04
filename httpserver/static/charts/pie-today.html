@@ -22,7 +22,7 @@
 // var today = yyyy+'/'+mm+'/'+dd;
 // console.log(today)
 
-d3.json('../../data/all_enqued_error_band.json', function(data) {
+d3.json('../../data/daily.json', function(data) {
   //this week
   var fValue = function(total,day){ return day.value  + total; }
   var fError = function(total,day){ return day.error  + total; }

@@ -1,14 +1,12 @@
 <html lang='en'>
 <head>
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-  <meta property='og:title' content='MetricsGraphics.js' />
-  <meta property='og:description' content='MetricsGraphics.js is a library optimized
-  for visualizing and laying out time-series data. It provides a simple way to produce
-  common types of graphics in a principled, consistent and responsive way.' />
+  <meta property='og:title' content='Babl Dashboard' />
+  <meta property='og:description' content='The Control Panel to your micro-services world' />
   <meta property='og:image' content='images/babl-logo.png' />
   <meta property='og:type' content='website' />
-  <meta property='og:url' content='http://metricsgraphicsjs.org/' />
-  <meta property='og:site_name' content='MetricsGraphics.js' />
+  <meta property='og:url' content='https://babl.sh' />
+  <meta property='og:site_name' content='babl.sh' />
 
   <link rel='icon' type='image/png' href='images/babl-logo.png' />
   <title>Babl Dashboard</title>
@@ -30,6 +28,7 @@
   <script src='js/lib/highlight.pack.js'></script>
   <script src='js/jquery.min.js'></script>
   <script src="js/d3.v4.min.js"></script>
+  <script src="js/moment.min.js"></script>
 
 
   <!-- dev start -->
@@ -88,16 +87,17 @@
       </ul>
     </div>
     <div class="row meter text-center">
-    <div class="progress center-block" style="width:640px;">
-        <div class="progress-bar progress-bar-striped active progress-bar-info" style="width: 35%">
-          <span class="sr-only">980 req/h</span>
-        </div>
-        <div class="progress-bar progress-bar-striped active progress-bar-danger" style="width: 10%">
-          <span class="sr-only">20 req/h</span>
-        </div>
+      <span class="title">Requests/Error in the Last Hour</span>
+      <div id="last-hour-progress" class="progress center-block" style="width:640px;">
+        
+        <span id="no-progress" class="hidden">Nothing happening right now...</span>
+        
+        <div id="success-bar" class="progress-bar progress-bar-striped active progress-bar-info" style="width: {{.SuccessPercent}}%"></div>
+        <div id="error-bar" class="progress-bar progress-bar-striped active progress-bar-danger" style="width: {{.ErrorPercent}}%"></div>
+      </div>
+
+      <span class="last-hour-info">[<span id="cur-date">{{.LastHourDate}}</span>] Last Hour: <b id="total-req">{{.LastHourReq}}</b>req/h with a <b id="error-rate">{{.LastHourErrorRate}}%</b> error rate. Max: <b id="max">{{.MaxReq}}</b>req/h <span id="max-date">{{.MaxReqDate}}</span>[<a href='#' id='refresh' class=''>refresh</a>]</span>
     </div>
-    <span class="last-hour-info">Last hour data: <b>1000</b>req/h with a <b>3.84%</b> error rate. Max: <b>2000</b>req/h at Jan 1, 2016 at 16:17</span>
-    </div>  
   <div class="row text-center">
     <ul class='counters'>
     <li>
@@ -115,8 +115,12 @@
     <iframe class='history' src="charts/line-all-time.html"></iframe>
   </div>
   <div class='row text-center'>
+    <h3> Data evolution </h3>
     <iframe class='history-evolution' src="charts/week-table.html"></iframe>
   </div>
+
+  <span> All Data Raw</span>
+  <div id="table"></div>
   
   <div class='footer'>
       <a href='https://babl.sh'>Babl.sh</a>
@@ -125,6 +129,7 @@
     </a>
   </div>
 </div> <!-- end container -->
+<script src='js/json-to-table.js'></script>
 <script src='js/main.js'></script>
 </body>
 </html>

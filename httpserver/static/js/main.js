@@ -3,95 +3,6 @@ var theme = 'light';
 (function() {
   'use strict';
 
-    //set the active pill and section on first load
-    var section = (document.location.hash) ? document.location.hash.slice(1) : 'lines';
-
-    $('#trunk').load('charts/' + section + '.htm', function() {
-      $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-      });
-    });
-
-    $('.examples li a#goto-' + section).addClass('active');
-
-    //handle mouse clicks and so on
-    assignEventListeners();
-
-    function assignEventListeners() {
-      $('ul.examples li a.pill').on('click', function(event) {
-        event.preventDefault();
-        $('ul.examples li a.pill').removeClass('active');
-        $(this).addClass('active');
-
-        var section = $(this).attr('id').slice(5);
-        $('#trunk').load('charts/' + section + '.htm', function() {
-          $('pre code').each(function(i, block) {
-            hljs.highlightBlock(block);
-          });
-        });
-
-        document.location.hash = section;
-
-        return false;
-      })
-
-    //   $('#dark-css').on('click', function () {
-    //     theme = 'dark';
-
-    //     $('.missing')
-    //     .css('background-image', 'url(images/missing-data-dark.png)');
-
-    //     $('.wip')
-    //     .css('background-color', '#3b3b3b');
-
-    //     $('.trunk-section')
-    //     .css('border-top-color', '#5e5e5e');
-
-    //     $('.mg-missing-background')
-    //     .css('stroke', '#ccc');
-
-    //     $('.head ul li a.pill').removeClass('active');
-    //     $(this).toggleClass('active');
-    //     $('#dark').attr({href : 'css/metricsgraphics-demo-dark.css'});
-    //     $('#dark-code').attr({href : 'css/railscasts.css'});
-    //     $('#accessible').attr({href : ''});
-
-    //     return false;
-    //   });
-
-    //   $('#light-css').on('click', function () {
-    //     theme = 'light';
-
-    //     $('.missing')
-    //     .css('background-image', 'url(images/missing-data.png)');
-
-    //     $('.wip')
-    //     .css('background-color', '#f1f1f1');
-
-    //     $('.trunk-section')
-    //     .css('border-top-color', '#ccc');
-
-    //     $('.mg-missing-background')
-    //     .css('stroke', 'blue');
-
-    //     $('.head ul li a.pill').removeClass('active');
-    //     $(this).toggleClass('active');
-    //     $('#dark').attr({href : ''});
-    //     $('#dark-code').attr({href : ''});
-    //     $('#accessible').attr({href : ''});
-
-    //     return false;
-    //   });
-
-    //   $('#accessible-css').on('click', function () {
-    //     $('.head ul li a.pill').removeClass('active');
-    //     $(this).toggleClass('active');
-    //     $('#accessible').attr({href : 'css/metricsgraphics-demo-accessible.css'});
-
-    //     return false;
-    //   });
-    }
-
     // replace all SVG images with inline SVG
     // http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg
     // -image-using-css-jquery-svg-image-replacement
@@ -102,76 +13,128 @@ var theme = 'light';
       var imgURL = $img.attr('src');
 
       $.get(imgURL, function(data) {
-            // Get the SVG tag, ignore the rest
-            var $svg = jQuery(data).find('svg');
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find('svg');
 
-            // Add replaced image's ID to the new SVG
-            if (typeof imgID !== 'undefined') {
-              $svg = $svg.attr('id', imgID);
-            }
-            // Add replaced image's classes to the new SVG
-            if (typeof imgClass !== 'undefined') {
-              $svg = $svg.attr('class', imgClass + ' replaced-svg');
-            }
+        // Add replaced image's ID to the new SVG
+        if (typeof imgID !== 'undefined') {
+          $svg = $svg.attr('id', imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if (typeof imgClass !== 'undefined') {
+          $svg = $svg.attr('class', imgClass + ' replaced-svg');
+        }
 
-            // Remove any invalid XML tags as per http://validator.w3.org
-            $svg = $svg.removeAttr('xmlns:a');
+        // Remove any invalid XML tags as per http://validator.w3.org
+        $svg = $svg.removeAttr('xmlns:a');
 
-            // Replace image with new SVG
-            $img.replaceWith($svg);
+        // Replace image with new SVG
+        $img.replaceWith($svg);
 
-          }, 'xml');
+      }, 'xml');
     });    
   })();
 
 
-(function(){
-  'use strict';
+  (function(){
+    'use strict';
 
-  $(document).ready(function() {
-    console.log("document loaded");
-    connectWebsocket();
-  });
+      var websocket;
+      
+        function updateLastHour(data){
 
-}())
+          d3.json('../../data/hour_max.json',function(max){
+          //bar
+          var successRate = (((data.total-data.error)/max.value)*100).toFixed(2)
+          var errorRate = (((data.error)/max.value)*100).toFixed(2)
+          $('#success-bar').attr("style","width:"+successRate+"%")
+          $('#error-bar').attr("style","width:"+errorRate+"%")
 
-var websocket;
-function connectWebsocket() {
-
-  function resetWs() {
-    websocket.onmessage = function () {};
-    websocket.onclose = function () {};
-    websocket.onopen = function () {};
-    websocket.close();
-    websocket = null;
-  }
-
-  if (websocket != null) {
-    resetWs();
-    console.log('web sockets reseted!')
-  }
-
-  if (window["WebSocket"]) {
-      var host = window.location.host;
-      websocket = new WebSocket("ws://" + host + "/ws");
-      websocket.onopen = function(evt) {
-        console.log("Websocket connection opened");
-        $('#ws').text("Ws connected, refreshing every 10s")
+          if(data.value == 0 && data.error ==0){
+            $('#no-progress').show()
+          }else{
+            $('#no-progress').hide()
+          }
+          //info
+          console.log('max',max)
+          $("#cur-date").text(moment(decodeURIComponent(data.date)).calendar())
+          $("#total-req").text(data.total)
+          $("#error-rate").text((((data.error)/data.total)*100).toFixed(2))
+          $("#max").text(max.value)
+          $("#max-date").text(moment(decodeURIComponent(max.date)).fromNow())
+        })
       }
-      websocket.onclose = function(evt) {
-        console.log("Websocket connection closed");
-        $('#ws').text("Ws closed... no data refresh!")
-        resetWs();
-      };
-      websocket.onmessage = function(evt) {
-        var messages = evt.data.split('\n');
-        for (var i = 0; i < messages.length; i++) {
-          console.log('message',messages[i])
-          // var item = JSON.parse(messages[i]);
-          // tableDataAddItem(item);
+
+      function connectWebsocket() {
+
+        function resetWs() {
+          websocket.onmessage = function () {};
+          websocket.onclose = function () {};
+          websocket.onopen = function () {};
+          websocket.close();
+          websocket = null;
         }
-      };
-  } else {
-    tableDataAddInfo("Your browser does not support WebSockets");
-  }
-}
+
+        if (websocket != null) {
+          resetWs();
+          console.log('web sockets reseted!')
+        }
+
+        if (window["WebSocket"]) {
+          var host = window.location.host;
+          websocket = new WebSocket("ws://" + host + "/ws");
+          websocket.onopen = function(evt) {
+            console.log("Websocket connection opened");
+            $('#ws').text("ws connected, refresh every min")
+          }
+          websocket.onclose = function(evt) {
+            console.log("Websocket connection closed");
+            $('#ws').text("ws closed... no data refresh!")
+          resetWs();
+        };
+        websocket.onmessage = function(evt) {
+          var data = JSON.parse(evt.data)
+          updateLastHour(data)
+        };
+      } else {
+        tableDataAddInfo("Your browser does not support WebSockets");
+      }
+    }
+
+    function update(){
+      $.get('/lasthour',function(data){
+        console.log('data',data)
+        data = JSON.parse(data);
+        updateLastHour(data)
+      })
+    }
+
+    $(document).ready(function() {
+      console.log("document loaded");
+      
+      connectWebsocket();
+      update()
+      $('#refresh').on('click', update)
+
+      d3.json('../../data/daily.json',function(data){
+        
+        var newData = []
+        data.forEach(function(d){
+          var suc = d.value-d.error
+          var i = {
+            "Date":d.date,
+            "Total":d.value,
+            "Success":suc,
+            "Error": d.error,
+            "Sucess Rate": (((suc)/d.value)*100).toFixed(2)+'%',
+            "Error Rate":(((d.error)/d.value)*100).toFixed(2)+'%'
+          }
+          newData.push(i)
+        })
+        var jsonHtmlTable = ConvertJsonToTable(newData, 'table', 'table', 'Download');
+
+        $('#table').html(jsonHtmlTable)
+        
+      })
+    });
+}())

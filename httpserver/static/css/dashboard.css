@@ -47,3 +47,9 @@ iframe {
   font-size:0.9rem;
   text-align: center
 }
+
+.meter > .title{
+  margin-top: 20px;
+  margin-bottom:5px;
+  font-size: 1.2rem
+}
