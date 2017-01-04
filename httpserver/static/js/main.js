@@ -45,9 +45,7 @@ var theme = 'light';
 
           d3.json('../../data/hour_max.json',function(max){
           //bar
-          data.total = 0
-          data.error= 0
-          
+                    
           if(data.total == 0 && data.error ==0){
             console.log('fodase')
             $('#no-progress').show()
