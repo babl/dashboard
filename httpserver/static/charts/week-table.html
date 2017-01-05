@@ -43,6 +43,11 @@
         <span class="this-week">Total Requests</span>
       </td>
       <td>
+        <span class="this-week-number" id="week_dayily"></span>
+        <br>
+        <span class="this-week">Requests/Day</span>
+      </td>
+      <td>
         <span class="this-week-number" id="week_error"></span>
         <br>
         <span class="this-week"">Errors</span>
@@ -59,6 +64,10 @@
         <img height="16" src=""  width="16" class="CToWUd">
         <span></span>
       </td>
+      <td id="last_week_total_day_rel">
+        <img height="16" src=""  width="16" class="CToWUd">
+        <span></span>
+      </td>
       <td id="last_week_error_rel">
         <img height="16" src="" width="16" class="CToWUd">
         <span></span>
@@ -72,6 +81,10 @@
     <tr class="last-weeks">
       <td id="all_week_total_rel">
         <img height="16" src="" style="" width="16" class="CToWUd">
+        <span></span>
+      </td>
+      <td id="all_week_total_day_rel">
+        <img height="16" src=""  width="16" class="CToWUd">
         <span></span>
       </td>
       <td id="all_week_error_rel">
@@ -118,9 +131,10 @@
     var this_week = _.last(data,[7]);
     var this_week_value = _.reduce(this_week,fValue, 0);
     var this_week_error = _.reduce(this_week, fError, 0);
-    var this_week_error_rate = (this_week_error/this_week_value*100).toFixed(2)
-
+    var this_week_error_rate = (this_week_error/this_week_value*100).toFixed(2);
+    var this_week_daily = Math.floor(this_week_value/this_week.length);
     $('#week_total').text(this_week_value.toLocaleString())
+    $('#week_dayily').text(this_week_daily.toLocaleString())
     $('#week_error').text(this_week_error.toLocaleString())
     $('#week_error_rate').text(this_week_error_rate+"%")
     // console.log(this_week,this_week_value,this_week_error_rate)
@@ -133,8 +147,10 @@
     var last_week_value = _.reduce(data_last_week, fValue, 0);
     var last_week_error = _.reduce(data_last_week, fError, 0);
     var last_week_error_rate = (last_week_error/last_week_value*100).toFixed(2)
+    var last_week_daily = Math.floor(last_week_value/data_last_week.length);
 
     calculate_dif(this_week_value,last_week_value,"#last_week_total_rel","+")
+    calculate_dif(this_week_daily,last_week_daily,"#last_week_total_day_rel","+")
     calculate_dif(this_week_error,last_week_error,"#last_week_error_rel","-")
     calculate_dif(this_week_error_rate,last_week_error_rate,"#last_week_error_rate_rel","-")
 
@@ -144,8 +160,10 @@
     var all_week_value = _.reduce(data, fValue, 0);
     var all_week_error = _.reduce(data, fError, 0);
     var all_week_error_rate = (all_week_error/all_week_value*100).toFixed(2)
+    var all_week_daily = Math.floor(all_week_value/data.length);
 
     calculate_dif(this_week_value/this_week.length,all_week_value/data.length,"#all_week_total_rel","+")
+    calculate_dif(this_week_daily,all_week_daily,"#all_week_total_day_rel","+")
     calculate_dif(this_week_error/this_week.length,all_week_error/data.length,"#all_week_error_rel","-")
     calculate_dif(this_week_error_rate,all_week_error_rate,"#all_week_error_rate_rel","-")
 

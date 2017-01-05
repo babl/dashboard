@@ -45,7 +45,7 @@ var theme = 'light';
 
           d3.json('../../data/hour_max.json',function(max){
           //bar
-                    
+
           if(data.total == 0 && data.error ==0){
             console.log('fodase')
             $('#no-progress').show()
@@ -55,8 +55,8 @@ var theme = 'light';
             var errorRate = (((data.error)/data.total)*100).toFixed(2)
           }
 
-          var successRateMax = (((data.total-data.error)/max.value)*100).toFixed(2)
-          var errorRateMax = (((data.error)/max.value)*100).toFixed(2)
+          var successRateMax = (((data.total-data.error)/max.total)*100).toFixed(2)
+          var errorRateMax = (((data.error)/max.total)*100).toFixed(2)
           $('#success-bar').attr("style","width:"+successRateMax+"%")
           $('#error-bar').attr("style","width:"+errorRateMax+"%")
 
@@ -65,7 +65,7 @@ var theme = 'light';
           $("#cur-date").text(moment(decodeURIComponent(data.date)).calendar())
           $("#total-req").text(data.total)
           $("#error-rate").text(errorRate+'%')
-          $("#max").text(max.value)
+          $("#max").text(max.total)
           $("#max-date").text(moment(decodeURIComponent(max.date)).fromNow())
         })
       }

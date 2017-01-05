@@ -9,16 +9,18 @@
 <script>
 
 d3.json('../../data/daily.json', function(data) {
-  console.log('ddd',data)
+  
   //this week
   var fValue = function(total,day){ return day.value  + total; }
   var fError = function(total,day){ return day.error  + total; }
 
   //all_time
-  var all_week_value = _.reduce(data, fValue, 0);
-  var all_week_error = _.reduce(data, fError, 0);
-  var all_week_suc = all_week_value - all_week_error
+  var all_time_value = _.reduce(data, fValue, 0);
+  var all_time_error = _.reduce(data, fError, 0);
+  var all_time_suc = all_time_value - all_time_error
 
+  var all_time_DailyRate = Math.floor(all_time_value/data.length)
+  var footer = "Avarage: "+all_time_DailyRate.toLocaleString() +" requests/day"
   var pie = new d3pie("pieChart", {
     "header": {
       "title": {
@@ -27,8 +29,9 @@ d3.json('../../data/daily.json', function(data) {
         "font": "courier"
       },
       "subtitle": {
-        "text": all_week_value.toLocaleString(),
-        "color": "#999999",
+        "text": all_time_value.toLocaleString(),
+        "color": "#000000",
+        "font-weight": "bold",
         "fontSize": 15,
         "font": "courier"
       },
@@ -36,10 +39,11 @@ d3.json('../../data/daily.json', function(data) {
       "titleSubtitlePadding": 10
     },
     "footer": {
+      "text": footer,
       "color": "#999999",
-      "fontSize": 10,
+      "fontSize": 11,
       "font": "open sans",
-      "location": "bottom-left"
+      "location": "bottom-center"
     },
     "size": {
       "canvasHeight": 200,
@@ -52,12 +56,12 @@ d3.json('../../data/daily.json', function(data) {
       "content": [
         {
           "label": "Error",
-          "value": all_week_error,
+          "value": all_time_error,
           "color": "#c12823"
         },
         {
           "label": "Success",
-          "value": all_week_suc,
+          "value": all_time_suc,
           "color": "#64a61f"
         }
       ]

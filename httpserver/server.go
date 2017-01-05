@@ -2,6 +2,7 @@ package httpserver
 
 import (
 	// "fmt"
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -12,6 +13,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
 	. "github.com/larskluge/babl-server/utils"
+	"github.com/robfig/cron"
 )
 
 // func GetVarsBlockSize(r *http.Request, defaultvalue int64) int64 {
@@ -61,11 +63,10 @@ func StartHttpServer(listen string, wsHub *Hub) {
 
 	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
 
-		out := RunScript("./scripts/last_hour.sh")
-		// fmt.Println(out)
-		// wsHub.Broadcast <- []byte(out)
+		out := LastHour()
+		fmt.Println("refresh", string(out))
 		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte(out))
+		w.Write(out)
 	})
 
 	r.HandleFunc("/loyalist", func(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +99,29 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		ReadTimeout:  15 * time.Second,
 	}
 
+	//setup crons
+	StartCrons(wsHub)
 	log.Fatal(srv.ListenAndServe())
+}
+
+func StartCrons(wsHub *Hub) {
+	//setup crons
+	c := cron.New()
+
+	//gather and save daily stats
+	c.AddFunc("0 * * * * *", func() {
+		t := time.Now()
+		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+		d := getDay(today)
+		saveToday(d)
+	})
+
+	c.AddFunc("0 * * * * *", func() {
+		out := LastHour()
+		wsHub.Broadcast <- out
+	})
+
+	c.Start()
 }
 
 func RunScript(cmd string, args ...string) []byte {

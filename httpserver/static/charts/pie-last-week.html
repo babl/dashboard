@@ -13,25 +13,29 @@
     var fValue = function(total,day){ return day.value  + total; }
     var fError = function(total,day){ return day.error  + total; }
 
-    var last_week_index_from = (data.length-14)-1
-    var last_week_index_to = (data.length-7)-1
-    var data_last_week = _.filter(data,function(day,i){ return i > last_week_index_from && i <= last_week_index_to})
+    // var last_week_index_from = (data.length-14)-1
+    // var last_week_index_to = (data.length-7)-1
+    // var data_last_week = _.filter(data,function(day,i){ return i > last_week_index_from && i <= last_week_index_to})
 
+    var data_last_week = _.last(data,[7]);
     var last_week_value = _.reduce(data_last_week, fValue, 0);
     var last_week_error = _.reduce(data_last_week, fError, 0);
-    var last_week_suc = last_week_value - last_week_error
-    console.log('dasd',last_week_value,last_week_error)
+    var last_week_suc = last_week_value - last_week_error;
+    
+    var all_week_DailyRate = Math.floor(last_week_value/data_last_week.length);
+    var footer = "Avarage: "+all_week_DailyRate.toLocaleString() +" requests/day";
 
     var pie = new d3pie("pieChart", {
       "header": {
         "title": {
-          "text": "Last Week",
+          "text": "Last 7 days",
           "fontSize": 11,
           "font": "courier"
         },
         "subtitle": {
           "text": last_week_value.toLocaleString(),
-          "color": "#999999",
+          "color": "#000000",
+          "font-weight": "bold",
           "fontSize": 15,
           "font": "courier"
         },
@@ -39,10 +43,11 @@
         "titleSubtitlePadding": 10
       },
       "footer": {
+        "text":footer,
         "color": "#999999",
-        "fontSize": 10,
+        "fontSize": 11,
         "font": "open sans",
-        "location": "bottom-left"
+        "location": "bottom-center"
       },
       "size": {
         "canvasHeight": 200,

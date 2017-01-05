@@ -5,11 +5,10 @@ import (
 	_ "net/http"
 	"os"
 	_ "strings"
-	"time"
+	_ "time"
 
 	log "github.com/Sirupsen/logrus"
 	. "github.com/darkua/babl-dashboard/httpserver"
-	"github.com/robfig/cron"
 )
 
 const Version = "0.0.1"
@@ -78,24 +77,6 @@ func run(listen string, dbg bool) {
 	// 	w.Header().Set("Content-Type", "application/octet-stream")
 	// 	w.Write(rhJson)
 	// }
-
-	//setup crons
-	c := cron.New()
-
-	//gather and save daily stats
-	c.AddFunc("0 * * * * *", func() {
-		t := time.Now()
-		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
-		d := getDay(today)
-		saveToday(d)
-	})
-
-	c.AddFunc("0 * * * * *", func() {
-		out := RunScript("./scripts/last_hour.sh")
-		wsHub.Broadcast <- out
-	})
-
-	c.Start()
 
 	// StartHttpServer(listen, wsHub, HandlerRequestHistory, HandlerRequestDetails, HandlerRequestPayload)
 	log.Warn(fmt.Sprintf("App Start WebServer running on port %s", listen))
