@@ -1,0 +1,133 @@
+<html lang='en'>
+<head>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+  <meta property='og:title' content='Babl Dashboard' />
+  <meta property='og:description' content='The Control Panel to your micro-services world' />
+  <meta property='og:image' content='images/babl-logo.png' />
+  <meta property='og:type' content='website' />
+  <meta property='og:url' content='https://babl.sh' />
+  <meta property='og:site_name' content='babl.sh' />
+
+  <link rel='icon' type='image/png' href='images/babl-logo.png' />
+  <title>Babl Dashboard</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+  
+  <link href='css/metricsgraphics.css ' rel='stylesheet' type='text/css'>
+  <link href='css/metricsgraphics-demo.css' rel='stylesheet' type='text/css' id='light'>
+  <link href='' rel='stylesheet' type='text/css' id='dark'>
+  <link href='' rel='stylesheet' type='text/css' id='accessible'>
+  <link href='css/highlightjs-default.css' rel='stylesheet' type='text/css' id='light-code'>
+  <link href='' rel='stylesheet' type='text/css' id='dark-code'>
+  <link href='css/dashboard.css' rel='stylesheet' type='text/css'>
+
+  <script src='js/lib/highlight.pack.js'></script>
+  <script src='js/jquery.min.js'></script>
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/moment.min.js"></script>
+
+
+  <!-- dev start -->
+  <script src='../src/js/MG.js'></script>
+  <script src='../src/js/misc/utility.js'></script>
+  <script src='../src/js/common/data_graphic.js'></script>
+  <script src='../src/js/common/hooks.js'></script>
+  <script src='../src/js/common/register.js'></script>
+  <script src='../src/js/common/bootstrap_tooltip_popover.js'></script>
+  <script src='../src/js/common/scales.js'></script>
+  <script src='../src/js/common/chart_title.js'></script>
+  <script src='../src/js/common/y_axis.js'></script>
+  <script src='../src/js/common/x_axis.js'></script>
+  <script src='../src/js/common/scales.js'></script>
+  <script src='../src/js/common/init.js'></script>
+  <script src='../src/js/common/markers.js'></script>
+  <script src='../src/js/common/rollover.js'></script>
+  <script src='../src/js/common/window_listeners.js'></script>
+  <script src='../src/js/layout/bootstrap_dropdown.js'></script>
+  <script src='../src/js/layout/button.js'></script>
+  <script src='../src/js/charts/line.js'></script>
+  <script src='../src/js/charts/histogram.js'></script>
+  <script src='../src/js/charts/point.js'></script>
+  <script src='../src/js/charts/bar.js'></script>
+  <script src='../src/js/charts/table.js'></script>
+  <script src='../src/js/charts/missing.js'></script>
+  <script src='../src/js/misc/process.js'></script>
+  <script src='../src/js/misc/smoothers.js'></script>
+  <script src='../src/js/misc/formatters.js'></script>
+  <script src='../src/js/misc/transitions.js'></script>
+  <script src='../src/js/misc/error.js'></script>
+  <!-- dev end -->
+
+</head>
+
+<body>
+  <div class='container'>
+
+    <div class='head'>
+      <ul class='text-right'>
+        <li><a href='#' id='ws' class=''></a></li>
+      </ul>
+    </div>
+
+    <div class="row text-center">
+      <img src='images/babl-logo.png' style="width: 83px;" class=""/>
+    </div>
+
+    <div class="row text-center" id="counters">
+      <ul class='counters'>
+        <li>
+          <span class="counter">
+            Data gathered from <b>{{.Module}}</b> modules</span> 
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="row meter text-center">
+      <span class="title">Requests/Error in the Last Hour</span>
+      <div id="last-hour-progress" class="progress center-block" style="width:640px;">
+        
+        <span id="no-progress" style="display: none;">Nothing happening right now...</span>
+        
+        <div id="success-bar" class="progress-bar progress-bar-striped active progress-bar-info" style="width: {{.SuccessPercent}}%"></div>
+        <div id="error-bar" class="progress-bar progress-bar-striped active progress-bar-danger" style="width: {{.ErrorPercent}}%"></div>
+      </div>
+
+      <span class="last-hour-info">[<span id="cur-date">{{.LastHourDate}}</span>] Last Hour: <b id="total-req">{{.LastHourReq}}</b>req/h with a <b id="error-rate">{{.LastHourErrorRate}}%</b> error rate. Max: <b id="max">{{.MaxReq}}</b>req/h <span id="max-date">{{.MaxReqDate}}</span>[<a href='#' id='refresh' class=''>refresh</a>]</span>
+    </div>
+  <div class="row text-center">
+    <ul class='counters'>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-all-time.html"></iframe>
+    </li>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-last-week.html"></iframe>
+    </li>
+    <li>
+      <iframe class="pie-counter" src="charts/pie-today.html"></iframe>
+    </li>
+  </div>
+
+  <div class='row trunk'>
+    <iframe class='history' src="charts/line-all-time.html"></iframe>
+  </div>
+  <div class='row text-center'>
+    <h3> Data evolution </h3>
+    <iframe class='history-evolution' src="charts/evolution-table.html"></iframe>
+  </div>
+  <div class='row text-center'>
+    <h3> All Data Raw</h3>
+    <iframe class='raw-table' src="charts/raw-table.html" frameborder="0" style="overflow:hidden;height:100%;width:820px" height="820px" width="100%"></iframe>
+  </div>
+  <div class='footer'>
+      <a href='https://babl.sh'>Babl.sh</a>
+    </a>
+  </div>
+</div> <!-- end container -->
+<script src='js/json-to-table.js'></script>
+<script src='js/main.js'></script>
+</body>
+</html>

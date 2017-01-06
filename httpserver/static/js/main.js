@@ -1,4 +1,6 @@
 var theme = 'light';
+var moduleUser;
+
 
 (function() {
   'use strict';
@@ -39,107 +41,91 @@ var theme = 'light';
   (function(){
     'use strict';
 
-      var websocket;
-      
-        function updateLastHour(data){
+    var websocket;
 
-          d3.json('../../data/hour_max.json',function(max){
-          //bar
+    function updateLastHour(data){
 
-          if(data.total == 0 && data.error ==0){
-            console.log('fodase')
-            $('#no-progress').show()
-            var errorRate = 0
-          }else{
-            $('#no-progress').hide()
-            var errorRate = (((data.error)/data.total)*100).toFixed(2)
+          //#TODO, EXCHANGE BROADCAST WITH GROUP CHANNELS!!!!
+          if(data["Group"] == moduleUser) {
+            data = data.Last
+            var lastHourPath = "../../data/"+moduleUser+"/hour_max.json"
+            d3.json(lastHourPath,function(max){
+
+              if(data.total == 0 && data.error ==0){
+                $('#no-progress').show()
+                var errorRate = 0
+              }else{
+                $('#no-progress').hide()
+                var errorRate = (((data.error)/data.total)*100).toFixed(2)
+              }
+
+              var successRateMax = (((data.total-data.error)/max.total)*100).toFixed(2)
+              var errorRateMax = (((data.error)/max.total)*100).toFixed(2)
+              $('#success-bar').attr("style","width:"+successRateMax+"%")
+              $('#error-bar').attr("style","width:"+errorRateMax+"%")
+
+              //info
+              console.log('max',max)
+              $("#cur-date").text(moment(decodeURIComponent(data.date)).calendar())
+              $("#total-req").text(data.total)
+              $("#error-rate").text(errorRate+'%')
+              $("#max").text(max.total)
+              $("#max-date").text(moment(decodeURIComponent(max.date)).fromNow())  
+            })
           }
-
-          var successRateMax = (((data.total-data.error)/max.total)*100).toFixed(2)
-          var errorRateMax = (((data.error)/max.total)*100).toFixed(2)
-          $('#success-bar').attr("style","width:"+successRateMax+"%")
-          $('#error-bar').attr("style","width:"+errorRateMax+"%")
-
-          //info
-          console.log('max',max)
-          $("#cur-date").text(moment(decodeURIComponent(data.date)).calendar())
-          $("#total-req").text(data.total)
-          $("#error-rate").text(errorRate+'%')
-          $("#max").text(max.total)
-          $("#max-date").text(moment(decodeURIComponent(max.date)).fromNow())
-        })
-      }
-
-      function connectWebsocket() {
-
-        function resetWs() {
-          websocket.onmessage = function () {};
-          websocket.onclose = function () {};
-          websocket.onopen = function () {};
-          websocket.close();
-          websocket = null;
         }
 
-        if (websocket != null) {
-          resetWs();
-          console.log('web sockets reseted!')
+        function connectWebsocket() {
+
+          function resetWs() {
+            websocket.onmessage = function () {};
+            websocket.onclose = function () {};
+            websocket.onopen = function () {};
+            websocket.close();
+            websocket = null;
+          }
+
+          if (websocket != null) {
+            resetWs();
+            console.log('web sockets reseted!')
+          }
+
+          if (window["WebSocket"]) {
+            var host = window.location.host;
+            websocket = new WebSocket("ws://" + host + "/ws/"+moduleUser);
+            websocket.onopen = function(evt) {
+              console.log("Websocket connection opened");
+              $('#ws').text("ws connected, refresh every min")
+            }
+            websocket.onclose = function(evt) {
+              console.log("Websocket connection closed");
+              $('#ws').text("ws closed... no data refresh!")
+              resetWs();
+            };
+            websocket.onmessage = function(evt) {
+              var data = JSON.parse(evt.data)
+              updateLastHour(data)
+            };
+          } else {
+            tableDataAddInfo("Your browser does not support WebSockets");
+          }
         }
 
-        if (window["WebSocket"]) {
-          var host = window.location.host;
-          websocket = new WebSocket("ws://" + host + "/ws");
-          websocket.onopen = function(evt) {
-            console.log("Websocket connection opened");
-            $('#ws').text("ws connected, refresh every min")
-          }
-          websocket.onclose = function(evt) {
-            console.log("Websocket connection closed");
-            $('#ws').text("ws closed... no data refresh!")
-          resetWs();
-        };
-        websocket.onmessage = function(evt) {
-          var data = JSON.parse(evt.data)
-          updateLastHour(data)
-        };
-      } else {
-        tableDataAddInfo("Your browser does not support WebSockets");
-      }
-    }
+        function update(){
+          console.log()
+          $.post('/lasthour','user='+moduleUser,function(data){
+            console.log('data',data)
+            data = JSON.parse(data);
+            updateLastHour(data)
+          })
+        }
 
-    function update(){
-      $.get('/lasthour',function(data){
-        console.log('data',data)
-        data = JSON.parse(data);
-        updateLastHour(data)
-      })
-    }
+        $(document).ready(function() {
+          console.log("document loaded");
+          moduleUser = location.pathname.substring(1)
+          connectWebsocket();
+          update()
+          $('#refresh').on('click', update)
 
-    $(document).ready(function() {
-      console.log("document loaded");
-      
-      connectWebsocket();
-      update()
-      $('#refresh').on('click', update)
-
-      d3.json('../../data/daily.json',function(data){
-        
-        var newData = []
-        data.forEach(function(d){
-          var suc = d.value-d.error
-          var i = {
-            "Date":d.date,
-            "Total":d.value,
-            "Success":suc,
-            "Error": d.error,
-            "Sucess Rate": (((suc)/d.value)*100).toFixed(2)+'%',
-            "Error Rate":(((d.error)/d.value)*100).toFixed(2)+'%'
-          }
-          newData.push(i)
-        })
-        var jsonHtmlTable = ConvertJsonToTable(newData, 'table', 'table', 'Download');
-
-        $('#table').html(jsonHtmlTable)
-        
-      })
-    });
-}())
+        });
+      }())

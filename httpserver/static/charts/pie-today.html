@@ -8,21 +8,9 @@
 <script src="../js/underscore-min.js"></script>
 <script>
 
-// var today = new Date();
-// var dd = today.getDate();
-// var mm = today.getMonth()+1; //January is 0!
-
-// var yyyy = today.getFullYear();
-// if(dd<10){
-//     dd='0'+dd;
-// } 
-// if(mm<10){
-//     mm='0'+mm;
-// } 
-// var today = yyyy+'/'+mm+'/'+dd;
-// console.log(today)
-
-d3.json('../../data/daily.json', function(data) {
+var moduleUser = window.parent.location.pathname.substring(1)
+var dailyPath = "../../data/"+moduleUser+"/daily.json"
+d3.json(dailyPath, function(data) {
   //this week
   var fValue = function(total,day){ return day.value  + total; }
   var fError = function(total,day){ return day.error  + total; }
@@ -30,7 +18,7 @@ d3.json('../../data/daily.json', function(data) {
   var today = _.last(data);
   var suc = today.value - today.error;
   var footer = today.value.toLocaleString() +" requests/day";
-  
+
   var pie = new d3pie("pieChart", {
     "header": {
       "title": {

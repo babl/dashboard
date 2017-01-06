@@ -1,7 +1,6 @@
 package httpserver
 
 import (
-	// "fmt"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -15,19 +14,6 @@ import (
 	. "github.com/larskluge/babl-server/utils"
 	"github.com/robfig/cron"
 )
-
-// func GetVarsBlockSize(r *http.Request, defaultvalue int64) int64 {
-// 	result := defaultvalue
-// 	vars := mux.Vars(r)
-// 	blocksize := vars["blocksize"]
-// 	if blocksize != "" {
-// 		bsize, errParse := strconv.ParseInt(blocksize, 10, 64)
-// 		if errParse == nil {
-// 			result = bsize
-// 		}
-// 	}
-// 	return result
-// }
 
 type Counter struct {
 	Module            int
@@ -46,6 +32,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	pwd, err := os.Getwd()
 	Check(err)
 	dir := pwd + "/httpserver/static"
+
 	//fmt.Println("WorkingDir: ", pwd)
 	//fmt.Println("HttpServer: ", dir)
 	r := mux.NewRouter()
@@ -57,19 +44,27 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	// r.HandleFunc("/api/request/payload/{topic:.*}/{partition:[0-9]+}/{offset:[0-9]+}", HandlerRequestPayload).Methods("GET")
 
 	// websockets
-	r.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		serveWs(wsHub, w, r)
+	r.HandleFunc("/ws/{group}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		group := vars["group"]
+		fmt.Println("group", group)
+		serveWs(wsHub, w, r, group)
 	})
 
 	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
+		ModuleUser := r.FormValue("user")
+		fmt.Println(ModuleUser)
+		DataPath := "./httpserver/static/data/" + ModuleUser + "/"
+		ScriptsPath := "./scripts/" + ModuleUser + "/"
+		last := LastHour(ScriptsPath, DataPath)
 
-		out := LastHour()
-		fmt.Println("refresh", string(out))
 		w.Header().Set("Content-Type", "text/plain")
+		out := setStats(ModuleUser, last)
 		w.Write(out)
 	})
 
 	r.HandleFunc("/loyalist", func(w http.ResponseWriter, r *http.Request) {
+
 		t, err := template.ParseFiles(dir + "/loyalist.html") // Parse template file.
 		if err != nil {
 			panic(err)
@@ -77,13 +72,34 @@ func StartHttpServer(listen string, wsHub *Hub) {
 
 		counters := &Counter{
 			Module:            7,
-			LastHourDate:      "2017-01-03 16:35",
-			LastHourReq:       761,
-			LastHourErrorRate: 5.64,
-			MaxReq:            1000,
-			MaxReqDate:        "2017-01-03 15:35",
-			SuccessPercent:    76.1,
-			ErrorPercent:      5.64,
+			LastHourDate:      "",
+			LastHourReq:       0,
+			LastHourErrorRate: 0,
+			MaxReq:            0,
+			MaxReqDate:        "",
+			SuccessPercent:    0,
+			ErrorPercent:      0,
+		}
+		t.Execute(w, *counters) // merge.
+
+	})
+
+	r.HandleFunc("/babl", func(w http.ResponseWriter, r *http.Request) {
+
+		t, err := template.ParseFiles(dir + "/babl.html") // Parse template file.
+		if err != nil {
+			panic(err)
+		}
+
+		counters := &Counter{
+			Module:            11,
+			LastHourDate:      "",
+			LastHourReq:       0,
+			LastHourErrorRate: 0,
+			MaxReq:            0,
+			MaxReqDate:        "",
+			SuccessPercent:    0,
+			ErrorPercent:      0,
 		}
 		t.Execute(w, *counters) // merge.
 
@@ -100,25 +116,30 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	}
 
 	//setup crons
-	StartCrons(wsHub)
+	StartCrons(wsHub, "babl")
+	StartCrons(wsHub, "loyalist")
 	log.Fatal(srv.ListenAndServe())
 }
 
-func StartCrons(wsHub *Hub) {
+func StartCrons(wsHub *Hub, ModuleUser string) {
 	//setup crons
 	c := cron.New()
+
+	DataPath := "./httpserver/static/data/" + ModuleUser + "/"
+	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
 	//gather and save daily stats
 	c.AddFunc("0 * * * * *", func() {
 		t := time.Now()
 		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
-		d := getDay(today)
-		saveToday(d)
+		d := getDay(ScriptsPath, today)
+		saveToday(d, DataPath)
 	})
 
 	c.AddFunc("0 * * * * *", func() {
-		out := LastHour()
-		wsHub.Broadcast <- out
+		last := LastHour(ScriptsPath, DataPath)
+		out := setStats(ModuleUser, last)
+		wsHub.Broadcast <- out //#todo: replace broadcast to all with group channels!
 	})
 
 	c.Start()

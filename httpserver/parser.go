@@ -22,8 +22,22 @@ type Last struct {
 	Error int    `json:"error"`
 }
 
+type Stats struct {
+	Group string
+	Last  Last
+}
+
 func (d Day) toString() string {
 	return toJson(d)
+}
+
+func setStats(group string, last Last) []byte {
+	s := Stats{Group: group, Last: last}
+	out, err := json.Marshal(s)
+	if err != nil {
+		panic(err)
+	}
+	return out
 }
 
 func toJson(d interface{}) string {
@@ -44,8 +58,8 @@ func getLast(raw []byte) Last {
 	return l
 }
 
-func getMax() Last {
-	raw, err := ioutil.ReadFile("./httpserver/static/data/hour_max.json")
+func getMax(DataPath string) Last {
+	raw, err := ioutil.ReadFile(DataPath + "hour_max.json")
 	if err != nil {
 		panic(err)
 	}
@@ -58,8 +72,8 @@ func getMax() Last {
 	return m
 }
 
-func getAllDays() []Day {
-	raw, err := ioutil.ReadFile("./httpserver/static/data/daily.json")
+func getAllDays(DataPath string) []Day {
+	raw, err := ioutil.ReadFile(DataPath + "daily.json")
 	if err != nil {
 		panic(err)
 	}
@@ -72,8 +86,8 @@ func getAllDays() []Day {
 	return d
 }
 
-func getDay(args ...string) Day {
-	out := RunScript("./scripts/daily.sh", args...)
+func getDay(ScritpsPath string, args ...string) Day {
+	out := RunScript(ScritpsPath+"daily.sh", args...)
 	var d Day
 	err := json.Unmarshal(out, &d)
 	if err != nil {
@@ -82,21 +96,21 @@ func getDay(args ...string) Day {
 	return d
 }
 
-func LastHour() []byte {
-	fmt.Println("fodase")
-	out := RunScript("./scripts/last_hour.sh")
+func LastHour(ScritpsPath string, DataPath string) Last {
+
+	out := RunScript(ScritpsPath + "last_hour.sh")
 	last := getLast(out)
-	max := getMax()
+	max := getMax(DataPath)
 	fmt.Println("total", last, max)
 	if greaterThenMax(last, max) {
 		fmt.Println("saving max", last)
-		saveMax(last)
+		saveMax(last, DataPath)
 	}
-	return out
+	return last
 }
 
-func saveToday(today Day) {
-	days := getAllDays()
+func saveToday(today Day, DataPath string) {
+	days := getAllDays(DataPath)
 	i := -1
 	for k, d := range days {
 		if d.Date == today.Date {
@@ -112,19 +126,19 @@ func saveToday(today Day) {
 	if err != nil {
 		panic(err)
 	}
-	writeToFile(j, "./httpserver/static/data/daily.json")
+	writeToFile(j, DataPath+"daily.json")
 }
 
 func greaterThenMax(last Last, max Last) bool {
 	return last.Total > max.Total
 }
 
-func saveMax(m Last) {
+func saveMax(m Last, DataPath string) {
 	j, err := json.MarshalIndent(m, "", "  ")
 	if err != nil {
 		panic(err)
 	}
-	writeToFile(j, "./httpserver/static/data/hour_max.json")
+	writeToFile(j, DataPath+"hour_max.json")
 }
 
 func writeToFile(data []byte, path string) {

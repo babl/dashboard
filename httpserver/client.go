@@ -46,6 +46,8 @@ type Client struct {
 
 	// Buffered channel of outbound messages.
 	send chan []byte
+	// client group
+	group string
 }
 
 // readPump pumps messages from the websocket connection to the hub.
@@ -118,13 +120,13 @@ func (c *Client) writePump() {
 }
 
 // serveWs handles websocket requests from the peer.
-func serveWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
+func serveWs(hub *Hub, w http.ResponseWriter, r *http.Request, group string) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Debug("Websocket ServerWs error: ", err)
 		return
 	}
-	client := &Client{hub: hub, conn: conn, send: make(chan []byte, 256)}
+	client := &Client{hub: hub, conn: conn, group: group, send: make(chan []byte, 256)}
 	client.hub.Register <- client
 	go client.writePump()
 	client.readPump()

@@ -7,8 +7,9 @@
   <script src="../js/d3pie.min.js"></script>
   <script src="../js/underscore-min.js"></script>
   <script>
-
-  d3.json('../../data/daily.json', function(data) {
+    var moduleUser = window.parent.location.pathname.substring(1)
+    var dailyPath = "../../data/"+moduleUser+"/daily.json"
+    d3.json(dailyPath, function(data) {
     //this week
     var fValue = function(total,day){ return day.value  + total; }
     var fError = function(total,day){ return day.error  + total; }
