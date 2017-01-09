@@ -16,7 +16,7 @@ import (
 )
 
 type Counter struct {
-	Module            int
+	Module            string
 	LastHourDate      string
 	LastHourReq       int
 	LastHourError     int
@@ -71,7 +71,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		}
 
 		counters := &Counter{
-			Module:            7,
+			Module:            "7",
 			LastHourDate:      "",
 			LastHourReq:       0,
 			LastHourErrorRate: 0,
@@ -92,7 +92,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		}
 
 		counters := &Counter{
-			Module:            11,
+			Module:            "all",
 			LastHourDate:      "",
 			LastHourReq:       0,
 			LastHourErrorRate: 0,

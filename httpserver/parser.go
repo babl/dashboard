@@ -50,6 +50,7 @@ func toJson(d interface{}) string {
 }
 
 func getLast(raw []byte) Last {
+	fmt.Println("raw", string(raw))
 	var l Last
 	err := json.Unmarshal(raw, &l)
 	if err != nil {
@@ -99,6 +100,7 @@ func getDay(ScritpsPath string, args ...string) Day {
 func LastHour(ScritpsPath string, DataPath string) Last {
 
 	out := RunScript(ScritpsPath + "last_hour.sh")
+	fmt.Println("bytes...", out)
 	last := getLast(out)
 	max := getMax(DataPath)
 	fmt.Println("total", last, max)

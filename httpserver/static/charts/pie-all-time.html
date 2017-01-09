@@ -22,7 +22,7 @@ d3.json(dailyPath, function(data) {
   var all_time_suc = all_time_value - all_time_error
 
   var all_time_DailyRate = Math.floor(all_time_value/data.length)
-  var footer = "Avarage: "+all_time_DailyRate.toLocaleString() +" requests/day"
+  var footer = "Average: "+all_time_DailyRate.toLocaleString() +" requests/day"
   var pie = new d3pie("pieChart", {
     "header": {
       "title": {

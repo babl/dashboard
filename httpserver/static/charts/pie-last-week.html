@@ -24,7 +24,7 @@
     var last_week_suc = last_week_value - last_week_error;
     
     var all_week_DailyRate = Math.floor(last_week_value/data_last_week.length);
-    var footer = "Avarage: "+all_week_DailyRate.toLocaleString() +" requests/day";
+    var footer = "Average: "+all_week_DailyRate.toLocaleString() +" requests/day";
 
     var pie = new d3pie("pieChart", {
       "header": {

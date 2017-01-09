@@ -48,6 +48,12 @@ var moduleUser;
           //#TODO, EXCHANGE BROADCAST WITH GROUP CHANNELS!!!!
           if(data["Group"] == moduleUser) {
             data = data.Last
+            
+            //#error calculation can be negative...
+            if (data.error < 0){
+              data.error = 0
+            }
+
             var lastHourPath = "../../data/"+moduleUser+"/hour_max.json"
             d3.json(lastHourPath,function(max){
 
@@ -95,11 +101,11 @@ var moduleUser;
             websocket = new WebSocket("ws://" + host + "/ws/"+moduleUser);
             websocket.onopen = function(evt) {
               console.log("Websocket connection opened");
-              $('#ws').text("ws connected, refresh every min")
+              // $('#ws').text("ws connected, refresh every min")
             }
             websocket.onclose = function(evt) {
               console.log("Websocket connection closed");
-              $('#ws').text("ws closed... no data refresh!")
+              // $('#ws').text("ws closed... no data refresh!")
               resetWs();
             };
             websocket.onmessage = function(evt) {

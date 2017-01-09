@@ -15,19 +15,19 @@ d3.json(dailyPath, function(data) {
   var fValue = function(total,day){ return day.value  + total; }
   var fError = function(total,day){ return day.error  + total; }
 
-  var today = _.last(data);
-  var suc = today.value - today.error;
-  var footer = today.value.toLocaleString() +" requests/day";
+  var yesterday = data[data.length-2];
+  var suc = yesterday.value - yesterday.error;
+  var footer = yesterday.value.toLocaleString() +" requests/day";
 
   var pie = new d3pie("pieChart", {
     "header": {
       "title": {
-        "text": "Today "+today.date,
+        "text": "Yesterday ",
         "fontSize": 11,
         "font": "courier"
       },
       "subtitle": {
-        "text": today.value.toLocaleString(),
+        "text": yesterday.value.toLocaleString(),
         "color": "#999999",
         "fontSize": 15,
         "font": "courier"
@@ -53,7 +53,7 @@ d3.json(dailyPath, function(data) {
       "content": [
         {
           "label": "Error",
-          "value": today.error,
+          "value": yesterday.error,
           "color": "#c12823"
         },
         {
