@@ -71,7 +71,6 @@ var moduleUser;
               $('#error-bar').attr("style","width:"+errorRateMax+"%")
 
               //info
-              console.log('max',max)
               $("#cur-date").text(moment(decodeURIComponent(data.date)).calendar())
               $("#total-req").text(data.total)
               $("#error-rate").text(errorRate+'%')
@@ -120,18 +119,14 @@ var moduleUser;
         function update(){
           console.log()
           $.post('/lasthour','user='+moduleUser,function(data){
-            console.log('data',data)
             data = JSON.parse(data);
             updateLastHour(data)
           })
         }
 
         $(document).ready(function() {
-          console.log("document loaded");
           moduleUser = location.pathname.substring(1)
           connectWebsocket();
           update()
-          $('#refresh').on('click', update)
-
         });
       }())

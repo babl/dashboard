@@ -22,34 +22,39 @@
 
 </style>
 <html>
-  <body>
-    <div id="table"></div>
-  </body>
-  <script src='../js/jquery.min.js'></script>
-  <script src="../js/d3.v4.min.js"></script>
-  <script src='../js/json-to-table.js'></script>
-  <script>
-    var moduleUser = window.parent.location.pathname.substring(1)
-    var dailyPath = "../../data/"+moduleUser+"/daily.json"
-    d3.json(dailyPath,function(data){
-      
-      var newData = []
-      data.forEach(function(d){
-        var suc = d.value-d.error
-        var i = {
-          "Date":d.date,
-          "Total":d.value,
-          "Success":suc,
-          "Error": d.error,
-          "Sucess Rate": (((suc)/d.value)*100).toFixed(2)+'%',
-          "Error Rate":(((d.error)/d.value)*100).toFixed(2)+'%'
-        }
-        newData.push(i)
-      })
-
-      var jsonHtmlTable = ConvertJsonToTable(newData.reverse(), 'table', 'table', 'Download');
-      $('#table').html(jsonHtmlTable)
-      
+<head>
+  <meta http-Equiv="Cache-Control" Content="no-cache" />
+  <meta http-Equiv="Pragma" Content="no-cache" />
+  <meta http-Equiv="Expires" Content="0" />
+</head>
+<body>
+  <div id="table"></div>
+</body>
+<script src='../js/jquery.min.js'></script>
+<script src="../js/d3.v4.min.js"></script>
+<script src='../js/json-to-table.js'></script>
+<script>
+  var moduleUser = window.parent.location.pathname.substring(1)
+  var dailyPath = "../../data/"+moduleUser+"/daily.json"
+  d3.json(dailyPath,function(data){
+    
+    var newData = []
+    data.forEach(function(d){
+      var suc = d.value-d.error
+      var i = {
+        "Date":d.date,
+        "Total":d.value,
+        "Success":suc,
+        "Error": d.error,
+        "Sucess Rate": (((suc)/d.value)*100).toFixed(2)+'%',
+        "Error Rate":(((d.error)/d.value)*100).toFixed(2)+'%'
+      }
+      newData.push(i)
     })
-  </script>
+
+    var jsonHtmlTable = ConvertJsonToTable(newData.reverse(), 'table', 'table', 'Download');
+    $('#table').html(jsonHtmlTable)
+    
+  })
+</script>
 </html>

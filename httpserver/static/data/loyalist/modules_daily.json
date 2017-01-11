@@ -1,0 +1,410 @@
+[
+  {
+    "date": "2017-01-06",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 11,
+          "error": -1,
+          "l": 12,
+          "u": 11
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 25,
+          "error": -1,
+          "l": 26,
+          "u": 25
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 1834,
+          "error": 132,
+          "l": 1702,
+          "u": 1834
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 1609,
+          "error": 144,
+          "l": 1465,
+          "u": 1609
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 2,
+          "error": 1,
+          "l": 1,
+          "u": 2
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-07",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 13,
+          "error": 1,
+          "l": 12,
+          "u": 13
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 2775,
+          "error": 224,
+          "l": 2551,
+          "u": 2775
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 2247,
+          "error": 195,
+          "l": 2052,
+          "u": 2247
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 1,
+          "error": 0,
+          "l": 1,
+          "u": 1
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-08",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 12,
+          "error": 0,
+          "l": 12,
+          "u": 12
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 1289,
+          "error": 48,
+          "l": 1241,
+          "u": 1289
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 1159,
+          "error": 84,
+          "l": 1075,
+          "u": 1159
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-09",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 33,
+          "error": 1,
+          "l": 32,
+          "u": 33
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 49,
+          "error": 2,
+          "l": 47,
+          "u": 49
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 2181,
+          "error": 76,
+          "l": 2105,
+          "u": 2181
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 2150,
+          "error": 230,
+          "l": 1920,
+          "u": 2150
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 11,
+          "error": 1,
+          "l": 10,
+          "u": 11
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 5,
+          "error": 2,
+          "l": 3,
+          "u": 5
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-10",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 16,
+          "error": 1,
+          "l": 15,
+          "u": 16
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 1728,
+          "error": 56,
+          "l": 1672,
+          "u": 1728
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 1569,
+          "error": 184,
+          "l": 1385,
+          "u": 1569
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 59,
+          "error": 11,
+          "l": 48,
+          "u": 59
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 1,
+          "error": 0,
+          "l": 1,
+          "u": 1
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-11",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 10,
+          "error": -1,
+          "l": 11,
+          "u": 10
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 8,
+          "error": -1,
+          "l": 9,
+          "u": 8
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 2675,
+          "error": 68,
+          "l": 2607,
+          "u": 2675
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 4773,
+          "error": 387,
+          "l": 4386,
+          "u": 4773
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  }
+]

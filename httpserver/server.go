@@ -33,27 +33,17 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	Check(err)
 	dir := pwd + "/httpserver/static"
 
-	//fmt.Println("WorkingDir: ", pwd)
-	//fmt.Println("HttpServer: ", dir)
 	r := mux.NewRouter()
-
-	// REST API
-	// r.HandleFunc("/api/request/history", HandlerRequestHistory).Methods("GET").Queries("blocksize", "{blocksize}")
-	// r.HandleFunc("/api/request/history", HandlerRequestHistory).Methods("GET")
-	// r.HandleFunc("/api/request/details/{requestid:.*}", HandlerRequestDetails).Methods("GET")
-	// r.HandleFunc("/api/request/payload/{topic:.*}/{partition:[0-9]+}/{offset:[0-9]+}", HandlerRequestPayload).Methods("GET")
 
 	// websockets
 	r.HandleFunc("/ws/{group}", func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		group := vars["group"]
-		fmt.Println("group", group)
 		serveWs(wsHub, w, r, group)
 	})
 
 	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
 		ModuleUser := r.FormValue("user")
-		fmt.Println(ModuleUser)
 		DataPath := "./httpserver/static/data/" + ModuleUser + "/"
 		ScriptsPath := "./scripts/" + ModuleUser + "/"
 		last := LastHour(ScriptsPath, DataPath)
@@ -129,18 +119,30 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
 	//gather and save daily stats
-	c.AddFunc("0 * * * * *", func() {
+	c.AddFunc("59 * * * * *", func() {
 		t := time.Now()
 		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 		d := getDay(ScriptsPath, today)
+		fmt.Println(today, d)
 		saveToday(d, DataPath)
 	})
 
 	c.AddFunc("0 * * * * *", func() {
 		last := LastHour(ScriptsPath, DataPath)
 		out := setStats(ModuleUser, last)
+		fmt.Println(string(out))
 		wsHub.Broadcast <- out //#todo: replace broadcast to all with group channels!
 	})
+
+	if ModuleUser == "loyalist" {
+		c.AddFunc("0 * * * * *", func() {
+			t := time.Now()
+			today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+			modules := getModuleData(ScriptsPath, today)
+			fmt.Println(today, modules)
+			saveTodayModules(modules, DataPath)
+		})
+	}
 
 	c.Start()
 }

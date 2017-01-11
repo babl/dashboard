@@ -1,5 +1,9 @@
 <html>
-<head></head>
+<head>
+    <meta http-Equiv="Cache-Control" Content="no-cache" />
+    <meta http-Equiv="Pragma" Content="no-cache" />
+    <meta http-Equiv="Expires" Content="0" />
+</head>
 <body>
 
 <div id="graph" style="text-align:center"></div>
@@ -55,18 +59,8 @@
  var moduleUser = window.parent.location.pathname.substring(1)
  var dailyPath = "../../data/"+moduleUser+"/daily.json"
  d3.json(dailyPath, function(data) {
-    // for (var i = 0; i < data.length; i++) {
-    //     data[i] = MG.convert.date(data[i], 'date');
-    // }
+    
     data = MG.convert.date(data, 'date');
-    var markers = [{
-      'date': new Date('2016-11-27T00:00:00.000Z'),
-      'label': 'babl-server 0.7.0'
-    }, {
-      'date': new Date('2016-12-09T00:00:00.000Z'),
-      'label': 'babl-server 0.8.0'
-    }];
-
     MG.data_graphic({
       title: "Total/Error Req",
       description: "Drag the crosshair over the chart to zoom",
@@ -78,7 +72,7 @@
       bottom: 50,
       missing_is_zero: true,
       // missing_is_hidden: true,
-      markers:markers,
+      // markers:markers,
       y_extended_ticks: true,
       show_confidence_band: ['l','u'],
       target: '#graph',

@@ -3,7 +3,6 @@ package httpserver
 import (
 	_ "bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	_ "os"
 )
@@ -25,6 +24,19 @@ type Last struct {
 type Stats struct {
 	Group string
 	Last  Last
+}
+
+type Modules struct {
+	Date string `json:"date"`
+	Data []struct {
+		Module string `json:"module"`
+		Data   struct {
+			Value int `json:"value"`
+			Error int `json:"error"`
+			L     int `json:"l"`
+			U     int `json:"u"`
+		} `json:"data"`
+	} `json:"data"`
 }
 
 func (d Day) toString() string {
@@ -50,7 +62,6 @@ func toJson(d interface{}) string {
 }
 
 func getLast(raw []byte) Last {
-	fmt.Println("raw", string(raw))
 	var l Last
 	err := json.Unmarshal(raw, &l)
 	if err != nil {
@@ -87,6 +98,20 @@ func getAllDays(DataPath string) []Day {
 	return d
 }
 
+func getAllDaysModules(DataPath string) []Modules {
+	raw, err := ioutil.ReadFile(DataPath + "modules_daily.json")
+	if err != nil {
+		panic(err)
+	}
+
+	var d []Modules
+	err = json.Unmarshal(raw, &d)
+	if err != nil {
+		panic(err)
+	}
+	return d
+}
+
 func getDay(ScritpsPath string, args ...string) Day {
 	out := RunScript(ScritpsPath+"daily.sh", args...)
 	var d Day
@@ -97,15 +122,22 @@ func getDay(ScritpsPath string, args ...string) Day {
 	return d
 }
 
+func getModuleData(ScritpsPath string, args ...string) Modules {
+	out := RunScript(ScritpsPath+"modules.sh", args...)
+	var m Modules
+	err := json.Unmarshal(out, &m)
+	if err != nil {
+		panic(err)
+	}
+	return m
+}
+
 func LastHour(ScritpsPath string, DataPath string) Last {
 
 	out := RunScript(ScritpsPath + "last_hour.sh")
-	fmt.Println("bytes...", out)
 	last := getLast(out)
 	max := getMax(DataPath)
-	fmt.Println("total", last, max)
 	if greaterThenMax(last, max) {
-		fmt.Println("saving max", last)
 		saveMax(last, DataPath)
 	}
 	return last
@@ -129,6 +161,26 @@ func saveToday(today Day, DataPath string) {
 		panic(err)
 	}
 	writeToFile(j, DataPath+"daily.json")
+}
+
+func saveTodayModules(today Modules, DataPath string) {
+	days := getAllDaysModules(DataPath)
+	i := -1
+	for k, d := range days {
+		if d.Date == today.Date {
+			i = k
+		}
+	}
+	if i == -1 {
+		days = append(days, today)
+	} else {
+		days[i] = today
+	}
+	j, err := json.MarshalIndent(days, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	writeToFile(j, DataPath+"modules_daily.json")
 }
 
 func greaterThenMax(last Last, max Last) bool {

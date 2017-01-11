@@ -43,6 +43,11 @@ iframe {
   width: 620px;
 }
 
+.module-data{
+  height: 360px;
+  width:1024px;
+}
+
 .last-hour-info{
   font-size:0.9rem;
   text-align: center

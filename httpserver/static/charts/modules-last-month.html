@@ -1,0 +1,129 @@
+<html>
+<head>
+  <meta http-Equiv="Cache-Control" Content="no-cache" />
+  <meta http-Equiv="Pragma" Content="no-cache" />
+  <meta http-Equiv="Expires" Content="0" />
+</head>
+<body>
+
+  <div id="graph-total" style="text-align:center;display:inline"></div>
+  <div id="graph-error" style="text-align:right;display:inline"></div>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='../css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+
+  <link href='../css/metricsgraphics.css ' rel='stylesheet' type='text/css'>
+  <link href='../css/metricsgraphics-demo.css' rel='stylesheet' type='text/css' id='light'>
+  <link href='../css/highlightjs-default.css' rel='stylesheet' type='text/css' id='light-code'>
+
+  <script src='../js/lib/highlight.pack.js'></script>
+  <script src='../js/jquery.min.js'></script>
+  <script src="../js/d3.v4.min.js"></script>
+
+  <script src='../../src/js/MG.js'></script>
+  <script src='../../src/js/misc/utility.js'></script>
+  <script src='../../src/js/common/data_graphic.js'></script>
+  <script src='../../src/js/common/hooks.js'></script>
+  <script src='../../src/js/common/register.js'></script>
+  <script src='../../src/js/common/bootstrap_tooltip_popover.js'></script>
+  <script src='../../src/js/common/scales.js'></script>
+  <script src='../../src/js/common/chart_title.js'></script>
+  <script src='../../src/js/common/y_axis.js'></script>
+  <script src='../../src/js/common/x_axis.js'></script>
+  <script src='../../src/js/common/scales.js'></script>
+  <script src='../../src/js/common/init.js'></script>
+  <script src='../../src/js/common/markers.js'></script>
+  <script src='../../src/js/common/rollover.js'></script>
+  <script src='../../src/js/common/window_listeners.js'></script>
+  <script src='../../src/js/layout/bootstrap_dropdown.js'></script>
+  <script src='../../src/js/layout/button.js'></script>
+  <script src='../../src/js/charts/line.js'></script>
+  <script src='../../src/js/charts/histogram.js'></script>
+  <script src='../../src/js/charts/point.js'></script>
+  <script src='../../src/js/charts/bar.js'></script>
+  <script src='../../src/js/charts/table.js'></script>
+  <script src='../../src/js/charts/missing.js'></script>
+  <script src='../../src/js/misc/process.js'></script>
+  <script src='../../src/js/misc/smoothers.js'></script>
+  <script src='../../src/js/misc/formatters.js'></script>
+  <script src='../../src/js/misc/transitions.js'></script>
+  <script src='../../src/js/misc/error.js'></script>
+
+  <script>
+   var moduleUser = window.parent.location.pathname.substring(1)
+   var dailyPath = "../../data/"+moduleUser+"/modules_daily.json"
+
+   function dataConvertion(data){
+    var newData = new Array()
+    for (var i in data){
+      var day = data[i]
+      for (var k in day){
+        var m = day.data
+        for (var j in m){
+          if(!newData[m[j].module]){
+            newData[m[j].module]=[]
+          }
+          newData[m[j].module].push({
+            "date": day.date,
+            "total": m[j].data.value,
+            "error": m[j].data.error
+          })
+        }
+      }
+    }
+    return newData
+  }
+
+  d3.json(dailyPath, function(data) {
+
+    data = MG.convert.date(data, 'date');
+    graphData = dataConvertion(data);
+    graphLabels = Object.keys(graphData)
+    values = Object.values(graphData)
+    labels = graphLabels.map(function(l){return decodeURIComponent(l).replace("|","").replace("\\","")})
+    
+    MG.data_graphic({
+      title: "Modules Total Req",
+      data: values,
+      top: 70,
+      width: 480,
+      height: 260,
+      right: 0,
+      bottom: 20,
+      x_accessor: 'date',
+      y_accessor: 'total',
+      missing_is_zero: true,
+      y_extended_ticks: true,
+      legend: labels,
+      legend_target: '.legend',
+      target: '#graph-total',
+      aggregate_rollover: true,
+      linked: true
+    });
+
+    MG.data_graphic({
+      title: "Modules Errors",
+      data: values,
+      top: 70,
+      width: 480,
+      height: 260,
+      right: 0,
+      bottom: 20,
+      x_accessor: 'date',
+      y_accessor: 'error',
+      missing_is_zero: true,
+      y_extended_ticks: true,
+      legend: labels,
+      legend_target: '.legend',
+      target: '#graph-error',
+      aggregate_rollover: true,
+      linked: true
+    });
+
+  });
+</script>
+</body>
+</html>
