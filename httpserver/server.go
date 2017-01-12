@@ -119,7 +119,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
 	//gather and save today stats
-	c.AddFunc("59 * * * * *", func() {
+	c.AddFunc("0 * * * * *", func() {
 		t := time.Now()
 		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 		d := getDay(ScriptsPath, today)
@@ -128,7 +128,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	})
 
 	//save all data for yesterday, for history
-	c.AddFunc("30 * * * * *", func() {
+	c.AddFunc("30 0 * * * *", func() {
 		t := time.Now().Add(-24 * time.Hour)
 		yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 		d := getDay(ScriptsPath, yesterday)
@@ -144,11 +144,20 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 		wsHub.Broadcast <- out //#todo: replace broadcast to all with group channels!
 	})
 
+	//gather module data only for loyalist
 	if ModuleUser == "loyalist" {
 		c.AddFunc("0 * * * * *", func() {
 			t := time.Now()
 			today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 			modules := getModuleData(ScriptsPath, today)
+			fmt.Println(today, modules)
+			saveTodayModules(modules, DataPath)
+		})
+
+		c.AddFunc("30 0 * * * *", func() {
+			t := time.Now().Add(-24 * time.Hour)
+			yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+			modules := getModuleData(ScriptsPath, yesterday)
 			fmt.Println(today, modules)
 			saveTodayModules(modules, DataPath)
 		})
