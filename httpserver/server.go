@@ -118,7 +118,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	DataPath := "./httpserver/static/data/" + ModuleUser + "/"
 	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
-	//gather and save daily stats
+	//gather and save today stats
 	c.AddFunc("59 * * * * *", func() {
 		t := time.Now()
 		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
@@ -127,6 +127,16 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 		saveToday(d, DataPath)
 	})
 
+	//save all data for yesterday, for history
+	c.AddFunc("30 * * * * *", func() {
+		t := time.Now().Add(-24 * time.Hour)
+		yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+		d := getDay(ScriptsPath, yesterday)
+		fmt.Println(yesterday, d)
+		saveToday(d, DataPath)
+	})
+
+	//gather last hour stats and save max req per hour
 	c.AddFunc("0 * * * * *", func() {
 		last := LastHour(ScriptsPath, DataPath)
 		out := setStats(ModuleUser, last)
