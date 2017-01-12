@@ -158,7 +158,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 			t := time.Now().Add(-24 * time.Hour)
 			yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 			modules := getModuleData(ScriptsPath, yesterday)
-			fmt.Println(today, modules)
+			fmt.Println(yesterday, modules)
 			saveTodayModules(modules, DataPath)
 		})
 	}
