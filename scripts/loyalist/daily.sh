@@ -1,11 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 #-------------------------------------------------------
 # VARS
 #-------------------------------------------------------
-LOG_MESSAGE=""
-
-selected_day=`date "+%Y-%m-%d"`
+selected_day=$(date "+%Y-%m-%d")
 if [ ! -z "$1" ] ; then
   selected_day=$1
 fi

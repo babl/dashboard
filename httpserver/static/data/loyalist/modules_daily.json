@@ -406,5 +406,73 @@
         }
       }
     ]
+  },
+  {
+    "date": "2017-01-12",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 6,
+          "error": 0,
+          "l": 6,
+          "u": 6
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 1426,
+          "error": 46,
+          "l": 1380,
+          "u": 1426
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 1303,
+          "error": 102,
+          "l": 1201,
+          "u": 1303
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 2,
+          "error": 2,
+          "l": 0,
+          "u": 2
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
   }
 ]
