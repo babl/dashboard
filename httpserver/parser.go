@@ -161,6 +161,7 @@ func saveToday(today Day, DataPath string) {
 		panic(err)
 	}
 	writeToFile(j, DataPath+"daily.json")
+	j = nil
 }
 
 func saveTodayModules(today Modules, DataPath string) {
@@ -181,6 +182,7 @@ func saveTodayModules(today Modules, DataPath string) {
 		panic(err)
 	}
 	writeToFile(j, DataPath+"modules_daily.json")
+	j = nil
 }
 
 func greaterThenMax(last Last, max Last) bool {
@@ -193,6 +195,7 @@ func saveMax(m Last, DataPath string) {
 		panic(err)
 	}
 	writeToFile(j, DataPath+"hour_max.json")
+	j = nil
 }
 
 func writeToFile(data []byte, path string) {

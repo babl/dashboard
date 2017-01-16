@@ -51,6 +51,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 		w.Header().Set("Content-Type", "text/plain")
 		out := setStats(ModuleUser, last)
 		w.Write(out)
+		out = nil
 	})
 
 	r.HandleFunc("/loyalist", func(w http.ResponseWriter, r *http.Request) {
@@ -145,6 +146,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 		out := setStats(ModuleUser, last)
 		fmt.Println(string(out))
 		wsHub.Broadcast <- out //#todo: replace broadcast to all with group channels!
+		out = nil
 	})
 
 	//gather module data only for loyalist

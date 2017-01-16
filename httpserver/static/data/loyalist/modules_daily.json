@@ -474,5 +474,277 @@
         }
       }
     ]
+  },
+  {
+    "date": "2017-01-13",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 19,
+          "error": 0,
+          "l": 19,
+          "u": 19
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 31,
+          "error": 0,
+          "l": 31,
+          "u": 31
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 62,
+          "error": -3,
+          "l": 65,
+          "u": 62
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 516,
+          "error": 49,
+          "l": 467,
+          "u": 516
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 2,
+          "error": 0,
+          "l": 2,
+          "u": 2
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-14",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 10,
+          "error": 0,
+          "l": 10,
+          "u": 10
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 13,
+          "error": 0,
+          "l": 13,
+          "u": 13
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 7,
+          "error": 0,
+          "l": 7,
+          "u": 7
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-15",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 31,
+          "error": 0,
+          "l": 31,
+          "u": 31
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 8,
+          "error": 0,
+          "l": 8,
+          "u": 8
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-16",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fdesigner-uploads%7C",
+        "data": {
+          "value": 1,
+          "error": 0,
+          "l": 1,
+          "u": 1
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprep-prints%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 6,
+          "error": 0,
+          "l": 6,
+          "u": 6
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 10,
+          "error": 4,
+          "l": 6,
+          "u": 10
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fteam-banner%7C",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fstatus",
+        "data": {
+          "value": 0,
+          "error": 0,
+          "l": 0,
+          "u": 0
+        }
+      }
+    ]
   }
 ]
