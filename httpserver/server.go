@@ -121,21 +121,11 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 
 	//gather and save today stats
 	//run every minute
-	c.AddFunc("0 * * * * *", func() {
+	c.AddFunc("59 * * * * *", func() {
 		t := time.Now()
 		today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 		d := getDay(ScriptsPath, today)
 		fmt.Println(today, d)
-		saveToday(d, DataPath)
-	})
-
-	//save all data for yesterday
-	//run every day at midnight
-	c.AddFunc("30 0 0 * * *", func() {
-		t := time.Now().Add(-24 * time.Hour)
-		yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
-		d := getDay(ScriptsPath, yesterday)
-		fmt.Println(yesterday, d)
 		saveToday(d, DataPath)
 	})
 
@@ -152,21 +142,11 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	//gather module data only for loyalist
 	//run every minute
 	if ModuleUser == "loyalist" {
-		c.AddFunc("0 * * * * *", func() {
+		c.AddFunc("59 * * * * *", func() {
 			t := time.Now()
 			today := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
 			modules := getModuleData(ScriptsPath, today)
 			fmt.Println(today, modules)
-			saveTodayModules(modules, DataPath)
-		})
-
-		//save all data for yesterday
-		//run every day at midnight
-		c.AddFunc("30 0 0 * * *", func() {
-			t := time.Now().Add(-24 * time.Hour)
-			yesterday := fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
-			modules := getModuleData(ScriptsPath, yesterday)
-			fmt.Println(yesterday, modules)
 			saveTodayModules(modules, DataPath)
 		})
 	}
