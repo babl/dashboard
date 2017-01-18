@@ -54,7 +54,8 @@
 
   <script>
    var moduleUser = window.parent.location.pathname.substring(1)
-   var dailyPath = "../../data/"+moduleUser+"/modules_daily.json"
+   var noCache="?"+(new Date()).getTime();
+   var dailyPath = "../../data/"+moduleUser+"/modules_daily.json"+noCache
 
    function dataConvertion(data){
     var newData = new Array()

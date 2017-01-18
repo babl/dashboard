@@ -56,8 +56,10 @@
 <link rel='stylesheet' href='../css/addons/mg_line_brushing.css' />
 
 <script>
+ var noCache="?"+(new Date()).getTime();
  var moduleUser = window.parent.location.pathname.substring(1)
- var dailyPath = "../../data/"+moduleUser+"/daily.json"
+ var dailyPath = "../../data/"+moduleUser+"/daily.json"+noCache
+
  d3.json(dailyPath, function(data) {
     
     data = MG.convert.date(data, 'date');

@@ -1,10 +1,8 @@
 package httpserver
 
 import (
-	_ "bytes"
 	"encoding/json"
 	"io/ioutil"
-	_ "os"
 )
 
 type Day struct {

@@ -6,5 +6,6 @@ COPY jq-linux64 /bin/jq
 RUN chmod +x /bin/jq
 ADD babl-dashboard_linux_amd64 /bin/babl-dashboard
 RUN chmod +x /bin/babl-dashboard
+VOLUME /httpserver/static
 WORKDIR /
 CMD ["/bin/babl-dashboard"]

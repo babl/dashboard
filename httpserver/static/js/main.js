@@ -53,8 +53,8 @@ var moduleUser;
             if (data.error < 0){
               data.error = 0
             }
-
-            var lastHourPath = "../../data/"+moduleUser+"/hour_max.json"
+            noCache="?"+(new Date()).getTime();
+            var lastHourPath = "../../data/"+moduleUser+"/hour_max.json"+noCache
             d3.json(lastHourPath,function(max){
 
               if(data.total == 0 && data.error ==0){

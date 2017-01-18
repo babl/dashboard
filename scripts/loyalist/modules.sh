@@ -13,13 +13,11 @@ fi
 cluster=$cluster'production%5C.babl%5C.sh%7C';
 cluster=$cluster'sandbox%5C.babl%5C.sh';
 
-modules=$modules'loyalist%5C%2Fdesigner-uploads%7C ';
-modules=$modules'loyalist%5C%2Fprep-prints%7C ';
 modules=$modules'loyalist%5C%2Fprint-images%7C ';
 modules=$modules'loyalist%5C%2Fproduct-image%7C ';
-modules=$modules'loyalist%5C%2Fproduct-image-uploader%7C ';
-modules=$modules'loyalist%5C%2Fteam-banner%7C ';
-modules=$modules'loyalist%5C%2Fstatus';
+modules=$modules'larskluge%5C%2Fimage-resize%7C ';
+modules=$modules'larskluge%5C%2Fs3%7C ';
+modules=$modules'larskluge%5C%2Frender-website%7C ';
 
 from='%27'${selected_day}'T00%3A00%3A00.000000000Z%27';
 to='%27'${selected_day}'T23%3A59%3A59.999999999Z%27';

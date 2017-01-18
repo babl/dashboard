@@ -12,7 +12,8 @@
 <script src="../js/underscore-min.js"></script>
 <script>
 var moduleUser = window.parent.location.pathname.substring(1)
-var dailyPath = "../../data/"+moduleUser+"/daily.json"
+var noCache="?"+(new Date()).getTime();
+var dailyPath = "../../data/"+moduleUser+"/daily.json"+noCache
 
 d3.json(dailyPath, function(data) {
   

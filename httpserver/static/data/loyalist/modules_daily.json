@@ -746,5 +746,55 @@
         }
       }
     ]
+  },
+  {
+    "date": "2017-01-18",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 17,
+          "error": 3,
+          "l": 14,
+          "u": 17
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 1029,
+          "error": 61,
+          "l": 968,
+          "u": 1029
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fimage-resize%7C",
+        "data": {
+          "value": 3986,
+          "error": -14,
+          "l": 4000,
+          "u": 3986
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fs3%7C",
+        "data": {
+          "value": 4014,
+          "error": 16,
+          "l": 3998,
+          "u": 4014
+        }
+      },
+      {
+        "module": "larskluge%5C%2Frender-website%7C",
+        "data": {
+          "value": 1013,
+          "error": 3,
+          "l": 1010,
+          "u": 1013
+        }
+      }
+    ]
   }
 ]
