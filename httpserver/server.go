@@ -44,7 +44,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 
 	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
 		ModuleUser := r.FormValue("user")
-		DataPath := "./httpserver/static/data/" + ModuleUser + "/"
+		DataPath := "./data/" + ModuleUser + "/"
 		ScriptsPath := "./scripts/" + ModuleUser + "/"
 		last := LastHour(ScriptsPath, DataPath)
 
@@ -116,7 +116,7 @@ func StartCrons(wsHub *Hub, ModuleUser string) {
 	//setup crons
 	c := cron.New()
 
-	DataPath := "./httpserver/static/data/" + ModuleUser + "/"
+	DataPath := "./data/" + ModuleUser + "/"
 	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
 	//gather and save today stats

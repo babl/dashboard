@@ -3,9 +3,10 @@ EXPOSE 8000
 COPY /httpserver/static /httpserver/static
 COPY /scripts /scripts
 COPY jq-linux64 /bin/jq
+COPY /httpserver/scripts/data /data
 RUN chmod +x /bin/jq
 ADD babl-dashboard_linux_amd64 /bin/babl-dashboard
 RUN chmod +x /bin/babl-dashboard
-VOLUME /httpserver/static
 WORKDIR /
+
 CMD ["/bin/babl-dashboard"]
