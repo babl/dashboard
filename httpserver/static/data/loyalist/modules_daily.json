@@ -155,46 +155,46 @@
       {
         "module": "loyalist%5C%2Fprint-images%7C",
         "data": {
-          "value": 12,
+          "value": 70,
           "error": 3,
-          "l": 9,
-          "u": 12
+          "l": 67,
+          "u": 70
         }
       },
       {
         "module": "loyalist%5C%2Fproduct-image%7C",
         "data": {
-          "value": 243,
-          "error": 32,
-          "l": 211,
-          "u": 243
+          "value": 1425,
+          "error": 65,
+          "l": 1360,
+          "u": 1425
         }
       },
       {
         "module": "larskluge%5C%2Fimage-resize%7C",
         "data": {
-          "value": 875,
+          "value": 5604,
           "error": 4,
-          "l": 871,
-          "u": 875
+          "l": 5600,
+          "u": 5604
         }
       },
       {
         "module": "larskluge%5C%2Fs3%7C",
         "data": {
-          "value": 875,
-          "error": 3,
-          "l": 872,
-          "u": 875
+          "value": 5652,
+          "error": 7,
+          "l": 5645,
+          "u": 5652
         }
       },
       {
         "module": "larskluge%5C%2Frender-website%7C",
         "data": {
-          "value": 231,
-          "error": 0,
-          "l": 231,
-          "u": 231
+          "value": 1457,
+          "error": -1,
+          "l": 1458,
+          "u": 1457
         }
       }
     ]
