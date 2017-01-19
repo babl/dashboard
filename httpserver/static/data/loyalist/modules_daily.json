@@ -1,748 +1,100 @@
 [
   {
-    "date": "2017-01-06",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 11,
-          "error": -1,
-          "l": 12,
-          "u": 11
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 25,
-          "error": -1,
-          "l": 26,
-          "u": 25
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 1834,
-          "error": 132,
-          "l": 1702,
-          "u": 1834
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 1609,
-          "error": 144,
-          "l": 1465,
-          "u": 1609
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 2,
-          "error": 1,
-          "l": 1,
-          "u": 2
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-07",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 13,
-          "error": 1,
-          "l": 12,
-          "u": 13
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 2775,
-          "error": 224,
-          "l": 2551,
-          "u": 2775
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 2247,
-          "error": 195,
-          "l": 2052,
-          "u": 2247
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 1,
-          "error": 0,
-          "l": 1,
-          "u": 1
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-08",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 12,
-          "error": 0,
-          "l": 12,
-          "u": 12
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 1289,
-          "error": 48,
-          "l": 1241,
-          "u": 1289
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 1159,
-          "error": 84,
-          "l": 1075,
-          "u": 1159
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-09",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 33,
-          "error": 1,
-          "l": 32,
-          "u": 33
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 49,
-          "error": 2,
-          "l": 47,
-          "u": 49
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 2181,
-          "error": 76,
-          "l": 2105,
-          "u": 2181
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 2150,
-          "error": 230,
-          "l": 1920,
-          "u": 2150
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 11,
-          "error": 1,
-          "l": 10,
-          "u": 11
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 5,
-          "error": 2,
-          "l": 3,
-          "u": 5
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-10",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 16,
-          "error": 1,
-          "l": 15,
-          "u": 16
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 1728,
-          "error": 56,
-          "l": 1672,
-          "u": 1728
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 1569,
-          "error": 184,
-          "l": 1385,
-          "u": 1569
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 59,
-          "error": 11,
-          "l": 48,
-          "u": 59
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 1,
-          "error": 0,
-          "l": 1,
-          "u": 1
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-11",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 25,
-          "error": 2,
-          "l": 23,
-          "u": 25
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 14,
-          "error": 0,
-          "l": 14,
-          "u": 14
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 6281,
-          "error": 136,
-          "l": 6145,
-          "u": 6281
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 7879,
-          "error": 661,
-          "l": 7218,
-          "u": 7879
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 1,
-          "error": 0,
-          "l": 1,
-          "u": 1
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-12",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 6,
-          "error": 0,
-          "l": 6,
-          "u": 6
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 1426,
-          "error": 46,
-          "l": 1380,
-          "u": 1426
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 1303,
-          "error": 102,
-          "l": 1201,
-          "u": 1303
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 2,
-          "error": 2,
-          "l": 0,
-          "u": 2
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-13",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 19,
-          "error": 0,
-          "l": 19,
-          "u": 19
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 31,
-          "error": 0,
-          "l": 31,
-          "u": 31
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 62,
-          "error": -3,
-          "l": 65,
-          "u": 62
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 516,
-          "error": 49,
-          "l": 467,
-          "u": 516
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 2,
-          "error": 0,
-          "l": 2,
-          "u": 2
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-14",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 10,
-          "error": 0,
-          "l": 10,
-          "u": 10
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 13,
-          "error": 0,
-          "l": 13,
-          "u": 13
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 7,
-          "error": 0,
-          "l": 7,
-          "u": 7
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
-    "date": "2017-01-15",
-    "data": [
-      {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprint-images%7C",
-        "data": {
-          "value": 31,
-          "error": 0,
-          "l": 31,
-          "u": 31
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image%7C",
-        "data": {
-          "value": 8,
-          "error": 0,
-          "l": 8,
-          "u": 8
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fteam-banner%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fstatus",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      }
-    ]
-  },
-  {
     "date": "2017-01-16",
     "data": [
       {
-        "module": "loyalist%5C%2Fdesigner-uploads%7C",
-        "data": {
-          "value": 1,
-          "error": 0,
-          "l": 1,
-          "u": 1
-        }
-      },
-      {
-        "module": "loyalist%5C%2Fprep-prints%7C",
-        "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
-        }
-      },
-      {
         "module": "loyalist%5C%2Fprint-images%7C",
         "data": {
-          "value": 6,
-          "error": 0,
-          "l": 6,
-          "u": 6
+          "value": 79,
+          "error": 8,
+          "l": 71,
+          "u": 79
         }
       },
       {
         "module": "loyalist%5C%2Fproduct-image%7C",
         "data": {
-          "value": 10,
-          "error": 4,
-          "l": 6,
-          "u": 10
+          "value": 329,
+          "error": 31,
+          "l": 298,
+          "u": 329
         }
       },
       {
-        "module": "loyalist%5C%2Fproduct-image-uploader%7C",
+        "module": "larskluge%5C%2Fimage-resize%7C",
         "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
+          "value": 1292,
+          "error": 1,
+          "l": 1291,
+          "u": 1292
         }
       },
       {
-        "module": "loyalist%5C%2Fteam-banner%7C",
+        "module": "larskluge%5C%2Fs3%7C",
         "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
+          "value": 1362,
+          "error": 3,
+          "l": 1359,
+          "u": 1362
         }
       },
       {
-        "module": "loyalist%5C%2Fstatus",
+        "module": "larskluge%5C%2Frender-website%7C",
         "data": {
-          "value": 0,
-          "error": 0,
-          "l": 0,
-          "u": 0
+          "value": 395,
+          "error": 13,
+          "l": 382,
+          "u": 395
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-17",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 78,
+          "error": 6,
+          "l": 72,
+          "u": 78
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 923,
+          "error": 73,
+          "l": 850,
+          "u": 923
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fimage-resize%7C",
+        "data": {
+          "value": 3571,
+          "error": 11,
+          "l": 3560,
+          "u": 3571
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fs3%7C",
+        "data": {
+          "value": 3627,
+          "error": -5,
+          "l": 3632,
+          "u": 3627
+        }
+      },
+      {
+        "module": "larskluge%5C%2Frender-website%7C",
+        "data": {
+          "value": 942,
+          "error": -12,
+          "l": 954,
+          "u": 942
         }
       }
     ]
@@ -753,46 +105,96 @@
       {
         "module": "loyalist%5C%2Fprint-images%7C",
         "data": {
-          "value": 17,
+          "value": 64,
           "error": 3,
-          "l": 14,
-          "u": 17
+          "l": 61,
+          "u": 64
         }
       },
       {
         "module": "loyalist%5C%2Fproduct-image%7C",
         "data": {
-          "value": 1029,
-          "error": 61,
-          "l": 968,
-          "u": 1029
+          "value": 1853,
+          "error": 130,
+          "l": 1723,
+          "u": 1853
         }
       },
       {
         "module": "larskluge%5C%2Fimage-resize%7C",
         "data": {
-          "value": 3986,
-          "error": -14,
-          "l": 4000,
-          "u": 3986
+          "value": 7139,
+          "error": -20,
+          "l": 7159,
+          "u": 7139
         }
       },
       {
         "module": "larskluge%5C%2Fs3%7C",
         "data": {
-          "value": 4014,
-          "error": 16,
-          "l": 3998,
-          "u": 4014
+          "value": 7182,
+          "error": 19,
+          "l": 7163,
+          "u": 7182
         }
       },
       {
         "module": "larskluge%5C%2Frender-website%7C",
         "data": {
-          "value": 1013,
+          "value": 1838,
+          "error": 2,
+          "l": 1836,
+          "u": 1838
+        }
+      }
+    ]
+  },
+  {
+    "date": "2017-01-19",
+    "data": [
+      {
+        "module": "loyalist%5C%2Fprint-images%7C",
+        "data": {
+          "value": 12,
           "error": 3,
-          "l": 1010,
-          "u": 1013
+          "l": 9,
+          "u": 12
+        }
+      },
+      {
+        "module": "loyalist%5C%2Fproduct-image%7C",
+        "data": {
+          "value": 243,
+          "error": 32,
+          "l": 211,
+          "u": 243
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fimage-resize%7C",
+        "data": {
+          "value": 875,
+          "error": 4,
+          "l": 871,
+          "u": 875
+        }
+      },
+      {
+        "module": "larskluge%5C%2Fs3%7C",
+        "data": {
+          "value": 875,
+          "error": 3,
+          "l": 872,
+          "u": 875
+        }
+      },
+      {
+        "module": "larskluge%5C%2Frender-website%7C",
+        "data": {
+          "value": 231,
+          "error": 0,
+          "l": 231,
+          "u": 231
         }
       }
     ]

@@ -44,7 +44,7 @@ func StartHttpServer(listen string, wsHub *Hub) {
 
 	r.HandleFunc("/lasthour", func(w http.ResponseWriter, r *http.Request) {
 		ModuleUser := r.FormValue("user")
-		DataPath := "./data/" + ModuleUser + "/"
+		DataPath := "./httpserver/static/data/" + ModuleUser + "/"
 		ScriptsPath := "./scripts/" + ModuleUser + "/"
 		last := LastHour(ScriptsPath, DataPath)
 
@@ -107,16 +107,24 @@ func StartHttpServer(listen string, wsHub *Hub) {
 	}
 
 	//setup crons
+	loadData()
 	StartCrons(wsHub, "babl")
 	StartCrons(wsHub, "loyalist")
 	log.Fatal(srv.ListenAndServe())
+}
+
+func loadData() {
+	if _, err := os.Stat("./httpserver/static/data/loyalist/daily.json"); os.IsNotExist(err) {
+		//initiate data preiously stored in google docs
+		Copy("./httpserver/static/historical_data", "./httpserver/static/data")
+	}
 }
 
 func StartCrons(wsHub *Hub, ModuleUser string) {
 	//setup crons
 	c := cron.New()
 
-	DataPath := "./data/" + ModuleUser + "/"
+	DataPath := "./httpserver/static/data/" + ModuleUser + "/"
 	ScriptsPath := "./scripts/" + ModuleUser + "/"
 
 	//gather and save today stats

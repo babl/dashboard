@@ -70,7 +70,7 @@
           newData[m[j].module].push({
             "date": day.date,
             "total": m[j].data.value,
-            "error": m[j].data.error
+            "error": m[j].data.error/m[j].data.value
           })
         }
       }
@@ -113,6 +113,7 @@
       height: 260,
       right: 0,
       bottom: 20,
+      format: 'percentage',
       x_accessor: 'date',
       y_accessor: 'error',
       missing_is_zero: true,
