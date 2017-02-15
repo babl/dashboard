@@ -86,6 +86,16 @@
     values = Object.values(graphData)
     labels = graphLabels.map(function(l){return decodeURIComponent(l).replace("|","").replace("\\","")})
     
+    //# fix NaN Error
+    for (var i = 0; i < values.length; i++) {
+      for (var j = 0; j < values[i].length; j++) {
+        console.log(typeof values[i][j].error)
+        if (isNaN(values[i][j].error)){
+          values[i][j].error = 0
+        }
+      }
+    }
+
     MG.data_graphic({
       title: "Modules Total Req",
       data: values,
